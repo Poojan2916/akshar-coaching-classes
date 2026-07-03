@@ -4,73 +4,112 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mathematics Test | Akshar Coaching Classes</title>
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:'Segoe UI',Poppins,sans-serif;background:#f8f9ff;color:#222;min-height:100vh}
-  .acc-topbar{display:flex;align-items:center;justify-content:space-between;background:linear-gradient(135deg,#0d1b4b,#1a2e7a);padding:10px 24px;position:sticky;top:0;z-index:999;box-shadow:0 2px 12px rgba(0,0,0,.3)}
-  .acc-topbar-left{display:flex;align-items:center;gap:12px}
-  .acc-topbar img{width:42px;height:42px;border-radius:50%;border:2px solid rgba(255,255,255,.3)}
-  .acc-topbar-name{color:#fff;font-weight:800;font-size:.92rem;line-height:1.1}
-  .acc-topbar-name span{display:block;font-size:.7rem;color:rgba(255,255,255,.6);font-weight:400}
-  .acc-home-btn{background:rgba(255,255,255,.15);color:#fff;border:1.5px solid rgba(255,255,255,.3);padding:7px 16px;border-radius:20px;font-size:.8rem;font-weight:700;text-decoration:none;transition:.2s;white-space:nowrap}
-  .acc-home-btn:hover{background:rgba(255,255,255,.25);color:#fbbf24}
-  .cover{color:#fff;padding:32px 40px;text-align:center;position:relative;overflow:hidden}
-  .cover::before{content:'';position:absolute;inset:0;opacity:.07;background:repeating-linear-gradient(45deg,#fff 0,#fff 1px,transparent 0,transparent 50%);background-size:20px 20px}
-  .cover-inner{position:relative;z-index:1}
-  .cover h1{font-size:1.9rem;font-weight:900;letter-spacing:-0.5px;margin:6px 0}
-  .cover p{opacity:.85;font-size:.88rem;margin-top:4px}
-  .meta-row{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:14px}
-  .meta-pill{background:rgba(255,255,255,.18);padding:6px 16px;border-radius:20px;font-size:.78rem;font-weight:600;border:1px solid rgba(255,255,255,.25)}
-  .timer-box{background:rgba(0,0,0,.2);border:2px solid rgba(255,255,255,.3);border-radius:12px;display:inline-flex;align-items:center;gap:8px;padding:8px 20px;margin-top:12px;font-size:1.1rem;font-weight:800;cursor:pointer;transition:.2s}
-  .timer-box:hover{background:rgba(0,0,0,.35)}
-  .main{max-width:900px;margin:0 auto;padding:24px 20px 60px}
-  .section-hd{display:flex;align-items:center;gap:10px;margin:28px 0 14px}
-  .section-hd h2{font-size:1.05rem;font-weight:800;color:#1a237e}
-  .section-hd .line{flex:1;height:2px;background:linear-gradient(to right,rgba(26,35,126,.2),transparent)}
-  .section-hd .pts{background:#1a237e;color:#fff;padding:3px 10px;border-radius:10px;font-size:.74rem;font-weight:700}
-  .mcq{background:#fff;border-radius:12px;padding:16px;margin:10px 0;box-shadow:0 2px 8px rgba(0,0,0,.06);border-left:5px solid}
-  .mcq-num{font-size:.72rem;font-weight:700;opacity:.5;margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px}
-  .mcq p{font-weight:600;font-size:.94rem;margin-bottom:10px;line-height:1.5}
-  .opts{display:grid;grid-template-columns:1fr 1fr;gap:7px}
-  .opts label{padding:9px 12px;border:1.5px solid #e0e0e0;border-radius:8px;cursor:pointer;font-size:.88rem;display:flex;align-items:center;gap:8px;transition:.15s;line-height:1.4}
-  .opts label:hover{border-color:currentColor;background:#f5f7ff}
-  .saq{background:#fff;border-radius:12px;padding:16px;margin:10px 0;box-shadow:0 2px 8px rgba(0,0,0,.06)}
-  .saq p{font-weight:600;font-size:.94rem;margin-bottom:10px;line-height:1.5}
-  textarea{width:100%;border:1.5px solid #ddd;border-radius:8px;padding:10px;font-size:.9rem;font-family:inherit;resize:vertical;min-height:70px}
-  textarea:focus{outline:none;border-color:#1a237e}
-  .ans-reveal{background:none;border:1.5px dashed #bbb;padding:7px 14px;border-radius:8px;cursor:pointer;font-size:.8rem;color:#555;margin-top:6px;font-family:inherit;transition:.2s}
-  .ans-reveal:hover{border-color:#1a237e;color:#1a237e}
-  .ans-box{background:#f0f4ff;border:1.5px solid #c5cae9;border-radius:8px;padding:11px 14px;margin-top:8px;display:none;font-size:.89rem;line-height:1.7;color:#333}
-  .btn-row{display:flex;gap:10px;margin:20px 0;justify-content:center;flex-wrap:wrap}
-  .btn-check{padding:12px 28px;border:none;border-radius:10px;color:#fff;font-weight:800;font-size:.95rem;cursor:pointer;transition:.2s}
-  .btn-check:hover{opacity:.85}
-  .btn-reset{background:#fff;border:2px solid #e53935;color:#e53935;padding:12px 28px;border-radius:10px;font-weight:800;font-size:.95rem;cursor:pointer;transition:.2s}
-  .btn-reset:hover{background:#e53935;color:#fff}
-  .score-panel{display:none;background:linear-gradient(135deg,#0d1b4b,#1a2e7a);color:#fff;border-radius:14px;padding:24px;text-align:center;margin:16px 0}
-  .score-panel h2{font-size:2rem;font-weight:900}
-  .score-panel p{opacity:.85;margin-top:6px}
-  .correct-fl{background:#e8f5e9!important;border-color:#43a047!important}
-  .wrong-fl{background:#ffebee!important;border-color:#e53935!important}
-  @media(max-width:560px){.opts{grid-template-columns:1fr}.cover h1{font-size:1.5rem}}
+  :root{
+    --paper:#f6f1e7;--paper-deep:#eee7d6;--surface:#fdfbf5;
+    --ink:#26221a;--ink-soft:#6b6353;
+    --navy:#1e2a4a;--navy-deep:#141d36;
+    --gold:#b07d1e;--gold-deep:#8a5f10;--gold-soft:#f0e2bd;
+    --line:#e0d7c2;
+    --ok:#3f6b4f;--ok-soft:#e7efe8;
+    --bad:#a03d36;--bad-soft:#f7e5e2;
+    --warn:#a2701d;--warn-soft:#f5ead2;
+    --info:#3d4c7d;--info-soft:#eaecf3;
+    --plum:#6b4a80;--plum-soft:#ede6f2;
+    --r-md:12px;--r-sm:8px;
+    --shadow:0 2px 6px rgba(62,52,30,.06),0 12px 32px -12px rgba(62,52,30,.14);
+    --topbar-h:62px;
+    --subj:#3d4c7d;--subj-deep:#2c3a63;--subj-soft:#eaecf3;
+  }
 
-.cover{background:linear-gradient(135deg,#1a237e,#1565c0);}
-.mcq{border-left-color:#1a237e;}
-.opts label{color:#333;}
-.opts label:hover{border-color:#1a237e;background:#f8f8ff;}
-.section-hd h2{color:#1a237e;}
-.section-hd .pts{background:#1a237e;}
-.btn-check{background:linear-gradient(135deg,#1a237e,#1565c0);}
-textarea:focus{border-color:#1a237e;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Figtree','Segoe UI',sans-serif;background:var(--paper);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+  ::selection{background:var(--gold-soft);color:var(--navy-deep)}
+  :focus-visible{outline:3px solid var(--gold);outline-offset:2px;border-radius:4px}
+
+  .acc-topbar{display:flex;align-items:center;justify-content:space-between;background:linear-gradient(160deg,var(--navy),var(--navy-deep));padding:10px 24px;position:sticky;top:0;z-index:999;box-shadow:0 2px 12px rgba(20,29,54,.35)}
+  .acc-topbar-left{display:flex;align-items:center;gap:12px}
+  .acc-topbar img{width:42px;height:42px;border-radius:12px;background:#fff;border:1px solid rgba(244,239,227,.25)}
+  .acc-topbar-name{color:#f4efe3;font-weight:700;font-size:.95rem;line-height:1.15}
+  .acc-topbar-name span{display:block;font-size:.72rem;color:rgba(244,239,227,.6);font-weight:400}
+  .acc-home-btn{background:rgba(244,239,227,.12);color:#f4efe3;border:1px solid rgba(244,239,227,.3);padding:8px 16px;border-radius:8px;font-size:.82rem;font-weight:600;text-decoration:none;transition:background .2s,color .2s,transform .15s;white-space:nowrap}
+  .acc-home-btn:hover{background:rgba(244,239,227,.22);color:#e3c77e}
+  .acc-home-btn:active{transform:scale(.97)}
+
+  .cover{background:radial-gradient(700px 320px at 85% -20%,rgba(176,125,30,.28),transparent 60%),linear-gradient(160deg,var(--subj) 0%,var(--subj-deep) 75%);color:#f4efe3;padding:44px 24px;text-align:center;position:relative;overflow:hidden}
+  .cover-inner{position:relative;z-index:1}
+  .cover h1{font-family:'Fraunces',Georgia,serif;font-weight:900;font-size:clamp(1.7rem,3.5vw + .8rem,2.5rem);letter-spacing:-.015em;line-height:1.12;text-wrap:balance}
+  .cover h2{font-family:'Figtree','Segoe UI',sans-serif;font-size:1rem;opacity:.85;margin-top:8px;font-weight:400}
+  .cover p{font-size:.95rem;opacity:.82;margin-top:8px}
+  .badges,.meta-row{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:18px}
+  .badge,.meta-pill{background:rgba(244,239,227,.14);border:1px solid rgba(244,239,227,.22);padding:6px 14px;border-radius:6px;font-size:.82rem;font-weight:500}
+
+  .correct-fl{background:var(--ok-soft)!important;border-color:var(--ok)!important}
+  .wrong-fl{background:var(--bad-soft)!important;border-color:var(--bad)!important}
+
+  textarea{width:100%;border:1.5px solid var(--line);border-radius:var(--r-sm);background:var(--surface);padding:11px;font-family:inherit;font-size:.95rem;margin-top:8px;resize:vertical;color:var(--ink)}
+  textarea:focus{outline:none;border-color:var(--subj)}
+
+  .cover h1{margin:6px 0}
+  .timer-box{background:rgba(20,29,54,.25);border:1.5px solid rgba(244,239,227,.35);border-radius:10px;display:inline-flex;align-items:center;gap:8px;padding:9px 20px;margin-top:14px;font-size:1.1rem;font-weight:700;cursor:pointer;transition:background .2s,transform .15s;font-variant-numeric:tabular-nums}
+  .timer-box:hover{background:rgba(20,29,54,.4)}
+  .timer-box:active{transform:scale(.97)}
+
+  .main{max-width:900px;margin:0 auto;padding:28px 20px 64px}
+  .section-hd{display:flex;align-items:center;gap:10px;margin:30px 0 14px}
+  .section-hd h2{font-family:'Fraunces',Georgia,serif;font-size:1.25rem;font-weight:700;color:var(--subj-deep);letter-spacing:-.01em}
+  .section-hd .line{flex:1;height:1px;background:var(--line)}
+  .section-hd .pts{background:var(--subj);color:#fdfbf5;padding:3px 11px;border-radius:6px;font-size:.75rem;font-weight:700;white-space:nowrap}
+
+  .mcq{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--subj);border-radius:var(--r-md);padding:18px;margin:12px 0;box-shadow:var(--shadow)}
+  .mcq-num{font-size:.72rem;font-weight:700;color:var(--ink-soft);margin-bottom:4px;text-transform:uppercase;letter-spacing:.08em}
+  .mcq p{font-weight:600;font-size:.96rem;margin-bottom:10px;line-height:1.5}
+  .opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .opts label{padding:10px 12px;border:1.5px solid var(--line);background:var(--paper);border-radius:var(--r-sm);cursor:pointer;font-size:.9rem;display:flex;align-items:center;gap:8px;transition:border-color .2s,background .2s;line-height:1.45;color:var(--ink)}
+  .opts label:hover{border-color:var(--subj);background:var(--subj-soft)}
+  input[type=radio]{accent-color:var(--subj)}
+
+  .saq{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:18px;margin:12px 0;box-shadow:var(--shadow)}
+  .saq p{font-weight:600;font-size:.96rem;margin-bottom:10px;line-height:1.5}
+
+  .ans-reveal{background:none;border:1.5px dashed var(--line);padding:8px 14px;border-radius:var(--r-sm);cursor:pointer;font-size:.82rem;color:var(--ink-soft);margin-top:8px;font-family:inherit;transition:border-color .2s,color .2s}
+  .ans-reveal:hover{border-color:var(--subj);color:var(--subj)}
+  .ans-box{background:var(--subj-soft);border:1px solid var(--subj);border-radius:var(--r-sm);padding:12px 14px;margin-top:8px;display:none;font-size:.9rem;line-height:1.7}
+
+  .btn-row{display:flex;gap:10px;margin:22px 0;justify-content:center;flex-wrap:wrap}
+  .btn-check{padding:13px 30px;border:none;border-radius:10px;background:var(--subj);color:#fdfbf5;font-weight:700;font-size:.98rem;font-family:inherit;cursor:pointer;transition:filter .2s,transform .15s}
+  .btn-check:hover{filter:brightness(1.15)}
+  .btn-check:active{transform:scale(.98)}
+  .btn-reset{background:transparent;border:1.5px solid var(--bad);color:var(--bad);padding:13px 30px;border-radius:10px;font-weight:700;font-size:.98rem;font-family:inherit;cursor:pointer;transition:background .2s,color .2s}
+  .btn-reset:hover{background:var(--bad);color:#fdfbf5}
+
+  .score-panel{display:none;background:linear-gradient(160deg,var(--navy),var(--navy-deep));color:#f4efe3;border-radius:var(--r-md);padding:26px;text-align:center;margin:16px 0}
+  .score-panel h2{font-family:'Fraunces',Georgia,serif;font-size:2.1rem;font-weight:900}
+  .score-panel p{opacity:.85;margin-top:6px}
+
+  @media(max-width:560px){
+    .opts{grid-template-columns:1fr}
+    .cover{padding:34px 18px}
+    .cover h1{font-size:1.5rem}
+    .acc-topbar{padding:10px 16px}
+    .main{padding:24px 16px 56px}
+  }
+
 </style>
 </head>
 <body>
 <div class="acc-topbar">
   <div class="acc-topbar-left">
-    <img src="data:image/png;base64,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" alt="ACC Logo">
+    <img src="logo.png" alt="ACC Logo">
     <div class="acc-topbar-name">Akshar Coaching Classes <span>Class VIII · Practice Test</span></div>
   </div>
-  <a class="acc-home-btn" href="index.html">🏠 Home</a>
+  <a class="acc-home-btn" href="index.html">&#8592; Home</a>
 </div>
 <div class="cover">
   <div class="cover-inner">
@@ -97,150 +136,150 @@ textarea:focus{border-color:#1a237e;}
   <div class="mcq-num">Question 1</div>
   <p>If 3x + 5 = 14, then x =</p>
   <div class="opts">
-    <label style="color:#333"><input type="radio" name="m1" value="a"> (a) 2</label>
-    <label style="color:#333"><input type="radio" name="m1" value="b"> (b) 3</label>
-    <label style="color:#333"><input type="radio" name="m1" value="c"> (c) 3</label>
-    <label style="color:#333"><input type="radio" name="m1" value="d"> (d) 4</label>
+    <label style="color:#26221a"><input type="radio" name="m1" value="a"> (a) 2</label>
+    <label style="color:#26221a"><input type="radio" name="m1" value="b"> (b) 3</label>
+    <label style="color:#26221a"><input type="radio" name="m1" value="c"> (c) 3</label>
+    <label style="color:#26221a"><input type="radio" name="m1" value="d"> (d) 4</label>
   </div>
 </div>
 <div class="mcq" id="m2">
   <div class="mcq-num">Question 2</div>
   <p>The solution of 2(x − 3) = 8 is</p>
   <div class="opts">
-    <label style="color:#333"><input type="radio" name="m2" value="a"> (a) 5</label>
-    <label style="color:#333"><input type="radio" name="m2" value="b"> (b) 7</label>
-    <label style="color:#333"><input type="radio" name="m2" value="c"> (c) 8</label>
-    <label style="color:#333"><input type="radio" name="m2" value="d"> (d) 6</label>
+    <label style="color:#26221a"><input type="radio" name="m2" value="a"> (a) 5</label>
+    <label style="color:#26221a"><input type="radio" name="m2" value="b"> (b) 7</label>
+    <label style="color:#26221a"><input type="radio" name="m2" value="c"> (c) 8</label>
+    <label style="color:#26221a"><input type="radio" name="m2" value="d"> (d) 6</label>
   </div>
 </div>
 <div class="mcq" id="m3">
   <div class="mcq-num">Question 3</div>
   <p>If a number is doubled and 5 is added, the result is 21. The number is</p>
   <div class="opts">
-    <label style="color:#333"><input type="radio" name="m3" value="a"> (a) 7</label>
-    <label style="color:#333"><input type="radio" name="m3" value="b"> (b) 8</label>
-    <label style="color:#333"><input type="radio" name="m3" value="c"> (c) 9</label>
-    <label style="color:#333"><input type="radio" name="m3" value="d"> (d) 10</label>
+    <label style="color:#26221a"><input type="radio" name="m3" value="a"> (a) 7</label>
+    <label style="color:#26221a"><input type="radio" name="m3" value="b"> (b) 8</label>
+    <label style="color:#26221a"><input type="radio" name="m3" value="c"> (c) 9</label>
+    <label style="color:#26221a"><input type="radio" name="m3" value="d"> (d) 10</label>
   </div>
 </div>
 <div class="mcq" id="m4">
   <div class="mcq-num">Question 4</div>
   <p>If 5x − 3 = 2x + 9, then x =</p>
   <div class="opts">
-    <label style="color:#333"><input type="radio" name="m4" value="a"> (a) 2</label>
-    <label style="color:#333"><input type="radio" name="m4" value="b"> (b) 3</label>
-    <label style="color:#333"><input type="radio" name="m4" value="c"> (c) 4</label>
-    <label style="color:#333"><input type="radio" name="m4" value="d"> (d) 5</label>
+    <label style="color:#26221a"><input type="radio" name="m4" value="a"> (a) 2</label>
+    <label style="color:#26221a"><input type="radio" name="m4" value="b"> (b) 3</label>
+    <label style="color:#26221a"><input type="radio" name="m4" value="c"> (c) 4</label>
+    <label style="color:#26221a"><input type="radio" name="m4" value="d"> (d) 5</label>
   </div>
 </div>
 <div class="mcq" id="m5">
   <div class="mcq-num">Question 5</div>
   <p>A train travels at 60 km/h. To cover 240 km it takes (in hours)</p>
   <div class="opts">
-    <label style="color:#333"><input type="radio" name="m5" value="a"> (a) 4</label>
-    <label style="color:#333"><input type="radio" name="m5" value="b"> (b) 5</label>
-    <label style="color:#333"><input type="radio" name="m5" value="c"> (c) 6</label>
-    <label style="color:#333"><input type="radio" name="m5" value="d"> (d) 3</label>
+    <label style="color:#26221a"><input type="radio" name="m5" value="a"> (a) 4</label>
+    <label style="color:#26221a"><input type="radio" name="m5" value="b"> (b) 5</label>
+    <label style="color:#26221a"><input type="radio" name="m5" value="c"> (c) 6</label>
+    <label style="color:#26221a"><input type="radio" name="m5" value="d"> (d) 3</label>
   </div>
 </div>
 <div class="mcq" id="m6">
   <div class="mcq-num">Question 6</div>
   <p>The sum of three consecutive integers is 63. The smallest is</p>
   <div class="opts">
-    <label style="color:#333"><input type="radio" name="m6" value="a"> (a) 19</label>
-    <label style="color:#333"><input type="radio" name="m6" value="b"> (b) 20</label>
-    <label style="color:#333"><input type="radio" name="m6" value="c"> (c) 21</label>
-    <label style="color:#333"><input type="radio" name="m6" value="d"> (d) 22</label>
+    <label style="color:#26221a"><input type="radio" name="m6" value="a"> (a) 19</label>
+    <label style="color:#26221a"><input type="radio" name="m6" value="b"> (b) 20</label>
+    <label style="color:#26221a"><input type="radio" name="m6" value="c"> (c) 21</label>
+    <label style="color:#26221a"><input type="radio" name="m6" value="d"> (d) 22</label>
   </div>
 </div>
 <div class="mcq" id="m7">
   <div class="mcq-num">Question 7</div>
   <p>If 4(2x − 1) = 28, then x =</p>
   <div class="opts">
-    <label style="color:#333"><input type="radio" name="m7" value="a"> (a) 3</label>
-    <label style="color:#333"><input type="radio" name="m7" value="b"> (b) 3.5</label>
-    <label style="color:#333"><input type="radio" name="m7" value="c"> (c) 4</label>
-    <label style="color:#333"><input type="radio" name="m7" value="d"> (d) 4.5</label>
+    <label style="color:#26221a"><input type="radio" name="m7" value="a"> (a) 3</label>
+    <label style="color:#26221a"><input type="radio" name="m7" value="b"> (b) 3.5</label>
+    <label style="color:#26221a"><input type="radio" name="m7" value="c"> (c) 4</label>
+    <label style="color:#26221a"><input type="radio" name="m7" value="d"> (d) 4.5</label>
   </div>
 </div>
 <div class="mcq" id="m8">
   <div class="mcq-num">Question 8</div>
   <p>A father is 4 times as old as his son. If the sum of their ages is 50, the son's age is</p>
   <div class="opts">
-    <label style="color:#333"><input type="radio" name="m8" value="a"> (a) 8</label>
-    <label style="color:#333"><input type="radio" name="m8" value="b"> (b) 10</label>
-    <label style="color:#333"><input type="radio" name="m8" value="c"> (c) 12</label>
-    <label style="color:#333"><input type="radio" name="m8" value="d"> (d) 14</label>
+    <label style="color:#26221a"><input type="radio" name="m8" value="a"> (a) 8</label>
+    <label style="color:#26221a"><input type="radio" name="m8" value="b"> (b) 10</label>
+    <label style="color:#26221a"><input type="radio" name="m8" value="c"> (c) 12</label>
+    <label style="color:#26221a"><input type="radio" name="m8" value="d"> (d) 14</label>
   </div>
 </div>
 <div class="mcq" id="m9">
   <div class="mcq-num">Question 9</div>
   <p>The standard form of a linear equation in one variable is</p>
   <div class="opts">
-    <label style="color:#333"><input type="radio" name="m9" value="a"> (a) ax + b = 0</label>
-    <label style="color:#333"><input type="radio" name="m9" value="b"> (b) ax² + bx + c = 0</label>
-    <label style="color:#333"><input type="radio" name="m9" value="c"> (c) ax + by = c</label>
-    <label style="color:#333"><input type="radio" name="m9" value="d"> (d) x/a = b</label>
+    <label style="color:#26221a"><input type="radio" name="m9" value="a"> (a) ax + b = 0</label>
+    <label style="color:#26221a"><input type="radio" name="m9" value="b"> (b) ax² + bx + c = 0</label>
+    <label style="color:#26221a"><input type="radio" name="m9" value="c"> (c) ax + by = c</label>
+    <label style="color:#26221a"><input type="radio" name="m9" value="d"> (d) x/a = b</label>
   </div>
 </div>
 <div class="mcq" id="m10">
   <div class="mcq-num">Question 10</div>
   <p>If the numerator of a fraction is increased by 2 and denominator by 1, new fraction is 3/4. Original fraction is</p>
   <div class="opts">
-    <label style="color:#333"><input type="radio" name="m10" value="a"> (a) 1/3</label>
-    <label style="color:#333"><input type="radio" name="m10" value="b"> (b) 2/3</label>
-    <label style="color:#333"><input type="radio" name="m10" value="c"> (c) 5/8</label>
-    <label style="color:#333"><input type="radio" name="m10" value="d"> (d) 3/4</label>
+    <label style="color:#26221a"><input type="radio" name="m10" value="a"> (a) 1/3</label>
+    <label style="color:#26221a"><input type="radio" name="m10" value="b"> (b) 2/3</label>
+    <label style="color:#26221a"><input type="radio" name="m10" value="c"> (c) 5/8</label>
+    <label style="color:#26221a"><input type="radio" name="m10" value="d"> (d) 3/4</label>
   </div>
 </div>
 <div class="mcq" id="m11">
   <div class="mcq-num">Question 11</div>
   <p>The difference of two numbers is 14. If the larger is 3 times the smaller, the larger number is</p>
   <div class="opts">
-    <label style="color:#333"><input type="radio" name="m11" value="a"> (a) 18</label>
-    <label style="color:#333"><input type="radio" name="m11" value="b"> (b) 21</label>
-    <label style="color:#333"><input type="radio" name="m11" value="c"> (c) 24</label>
-    <label style="color:#333"><input type="radio" name="m11" value="d"> (d) 28</label>
+    <label style="color:#26221a"><input type="radio" name="m11" value="a"> (a) 18</label>
+    <label style="color:#26221a"><input type="radio" name="m11" value="b"> (b) 21</label>
+    <label style="color:#26221a"><input type="radio" name="m11" value="c"> (c) 24</label>
+    <label style="color:#26221a"><input type="radio" name="m11" value="d"> (d) 28</label>
   </div>
 </div>
 <div class="mcq" id="m12">
   <div class="mcq-num">Question 12</div>
   <p>In 4 years, Riya will be twice her current age minus 6. Her current age is</p>
   <div class="opts">
-    <label style="color:#333"><input type="radio" name="m12" value="a"> (a) 10</label>
-    <label style="color:#333"><input type="radio" name="m12" value="b"> (b) 12</label>
-    <label style="color:#333"><input type="radio" name="m12" value="c"> (c) 14</label>
-    <label style="color:#333"><input type="radio" name="m12" value="d"> (d) 8</label>
+    <label style="color:#26221a"><input type="radio" name="m12" value="a"> (a) 10</label>
+    <label style="color:#26221a"><input type="radio" name="m12" value="b"> (b) 12</label>
+    <label style="color:#26221a"><input type="radio" name="m12" value="c"> (c) 14</label>
+    <label style="color:#26221a"><input type="radio" name="m12" value="d"> (d) 8</label>
   </div>
 </div>
 <div class="mcq" id="m13">
   <div class="mcq-num">Question 13</div>
   <p>Perimeter of a rectangle is 60 cm. If length is 4 more than breadth, length is</p>
   <div class="opts">
-    <label style="color:#333"><input type="radio" name="m13" value="a"> (a) 15</label>
-    <label style="color:#333"><input type="radio" name="m13" value="b"> (b) 16</label>
-    <label style="color:#333"><input type="radio" name="m13" value="c"> (c) 17</label>
-    <label style="color:#333"><input type="radio" name="m13" value="d"> (d) 18</label>
+    <label style="color:#26221a"><input type="radio" name="m13" value="a"> (a) 15</label>
+    <label style="color:#26221a"><input type="radio" name="m13" value="b"> (b) 16</label>
+    <label style="color:#26221a"><input type="radio" name="m13" value="c"> (c) 17</label>
+    <label style="color:#26221a"><input type="radio" name="m13" value="d"> (d) 18</label>
   </div>
 </div>
 <div class="mcq" id="m14">
   <div class="mcq-num">Question 14</div>
   <p>If 7 is subtracted from 5 times a number, the result is 28. The number is</p>
   <div class="opts">
-    <label style="color:#333"><input type="radio" name="m14" value="a"> (a) 6</label>
-    <label style="color:#333"><input type="radio" name="m14" value="b"> (b) 7</label>
-    <label style="color:#333"><input type="radio" name="m14" value="c"> (c) 8</label>
-    <label style="color:#333"><input type="radio" name="m14" value="d"> (d) 5</label>
+    <label style="color:#26221a"><input type="radio" name="m14" value="a"> (a) 6</label>
+    <label style="color:#26221a"><input type="radio" name="m14" value="b"> (b) 7</label>
+    <label style="color:#26221a"><input type="radio" name="m14" value="c"> (c) 8</label>
+    <label style="color:#26221a"><input type="radio" name="m14" value="d"> (d) 5</label>
   </div>
 </div>
 <div class="mcq" id="m15">
   <div class="mcq-num">Question 15</div>
   <p>A boat goes 30 km downstream in 2 hours and upstream in 3 hours. Speed of stream is</p>
   <div class="opts">
-    <label style="color:#333"><input type="radio" name="m15" value="a"> (a) 2.5 km/h</label>
-    <label style="color:#333"><input type="radio" name="m15" value="b"> (b) 3 km/h</label>
-    <label style="color:#333"><input type="radio" name="m15" value="c"> (c) 4 km/h</label>
-    <label style="color:#333"><input type="radio" name="m15" value="d"> (d) 5 km/h</label>
+    <label style="color:#26221a"><input type="radio" name="m15" value="a"> (a) 2.5 km/h</label>
+    <label style="color:#26221a"><input type="radio" name="m15" value="b"> (b) 3 km/h</label>
+    <label style="color:#26221a"><input type="radio" name="m15" value="c"> (c) 4 km/h</label>
+    <label style="color:#26221a"><input type="radio" name="m15" value="d"> (d) 5 km/h</label>
   </div>
 </div>
 <div class="section-hd"><h2>Section B — Short Answer Questions</h2><div class="line"></div><span class="pts">3 Marks Each</span></div>
