@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Science Study Guide | Class VIII</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',sans-serif;background:#f1f8f4;color:#222}
+.cover{background:linear-gradient(135deg,#1b5e20,#2e7d32);color:#fff;padding:36px 40px;text-align:center}
+.cover h1{font-size:2rem}.cover h2{font-size:1rem;opacity:.85;margin-top:6px}
+.badges{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:16px}
+.badge{background:rgba(255,255,255,.15);padding:6px 14px;border-radius:20px;font-size:.82rem}
+.ch-nav{display:flex;flex-wrap:wrap;gap:6px;padding:12px 16px;background:#fff;border-bottom:2px solid #c8e6c9;position:sticky;top:0;z-index:100;box-shadow:0 2px 6px rgba(0,0,0,.07)}
+.ch-nav button{padding:8px 16px;border:2px solid #2e7d32;border-radius:20px;background:#fff;color:#2e7d32;font-weight:700;cursor:pointer;font-size:.85rem;transition:.2s}
+.ch-nav button.active,.ch-nav button:hover{background:#2e7d32;color:#fff}
+.chapter{display:none;max-width:940px;margin:0 auto;padding:24px 20px 48px}
+.chapter.active{display:block}
+.card{background:#fff;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,.08);margin:18px 0;overflow:hidden}
+.ch1 .card-head{background:#1b5e20}
+.ch2 .card-head{background:#0d47a1}
+.ch3 .card-head{background:#4a148c}
+.ch4 .card-head{background:#bf360c}
+.card-head{color:#fff;padding:12px 20px;font-size:1rem;font-weight:700}
+.card-body{padding:18px 20px}
+.key-box{background:#e8f5e9;border-left:5px solid #43a047;border-radius:6px;padding:12px 16px;margin:10px 0;font-size:.92rem;line-height:1.8}
+.warn-box{background:#fff3e0;border-left:5px solid #f57c00;border-radius:6px;padding:11px 15px;margin:10px 0;font-size:.9rem;line-height:1.7}
+.fact-box{background:#e3f2fd;border-left:5px solid #1976d2;border-radius:6px;padding:11px 15px;margin:10px 0;font-size:.9rem;line-height:1.7}
+.trick-box{background:#fce4ec;border-left:5px solid #c2185b;border-radius:6px;padding:11px 15px;margin:10px 0;font-size:.9rem;line-height:1.7}
+table{width:100%;border-collapse:collapse;margin:10px 0}
+th{background:#2e7d32;color:#fff;padding:9px 12px;text-align:left;font-size:.87rem}
+.ch2 th{background:#0d47a1}
+.ch3 th{background:#4a148c}
+.ch4 th{background:#bf360c}
+td{padding:8px 12px;border-bottom:1px solid #e0e0e0;font-size:.9rem}
+tr:nth-child(even) td{background:#f9fbe7}
+.mcq-q{background:#fafafa;border-radius:8px;padding:13px;margin:12px 0;border-left:4px solid #43a047}
+.ch2 .mcq-q{border-left-color:#1976d2}
+.ch3 .mcq-q{border-left-color:#7b1fa2}
+.ch4 .mcq-q{border-left-color:#e64a19}
+.mcq-q p{font-weight:600;margin-bottom:10px;line-height:1.5}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.opts label{padding:8px 11px;border:1.5px solid #ccc;border-radius:6px;cursor:pointer;font-size:.89rem;display:flex;align-items:center;gap:7px;transition:.2s}
+.opts label:hover{border-color:#43a047;background:#f1f8e9}
+input[type=radio]{accent-color:#2e7d32}
+.ans-box{background:#e8f5e9;border:1.5px solid #a5d6a7;border-radius:6px;padding:10px 14px;margin-top:8px;display:none;font-size:.9rem;line-height:1.7}
+.btn-ans{background:#388e3c;color:#fff;border:none;padding:7px 14px;border-radius:6px;cursor:pointer;font-size:.83rem;margin-top:8px}
+textarea{width:100%;border:1.5px solid #bbb;border-radius:6px;padding:10px;font-family:inherit;font-size:.92rem;margin-top:6px;resize:vertical}
+textarea:focus{outline:none;border-color:#2e7d32}
+.btn-check{background:#1b5e20;color:#fff;border:none;padding:11px 26px;border-radius:8px;cursor:pointer;font-size:.95rem;font-weight:700;margin:12px 4px}
+.btn-reset{background:#e53935;color:#fff;border:none;padding:11px 26px;border-radius:8px;cursor:pointer;font-size:.95rem;font-weight:700}
+.score-box{display:none;background:linear-gradient(135deg,#1b5e20,#2e7d32);color:#fff;border-radius:10px;padding:20px;text-align:center;margin:14px 0}
+.correct-fl{background:#e8f5e9!important;border-color:#43a047!important}
+.wrong-fl{background:#ffebee!important;border-color:#e53935!important}
+.tag{display:inline-block;padding:2px 10px;border-radius:12px;font-size:.73rem;font-weight:700;margin-bottom:6px}
+.tag-k{background:#c8e6c9;color:#1b5e20}
+.tag-i{background:#e1bee7;color:#4a148c}
+.tag-d{background:#ffcdd2;color:#b71c1c}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:600px){.opts,.grid2{grid-template-columns:1fr}}
+
+  /* ── ACC NAV BAR ── */
+  .acc-topbar{display:flex;align-items:center;justify-content:space-between;background:linear-gradient(135deg,#0d1b4b,#1a2e7a);padding:10px 24px;position:sticky;top:0;z-index:999;box-shadow:0 2px 12px rgba(0,0,0,.3)}
+  .acc-topbar-left{display:flex;align-items:center;gap:12px}
+  .acc-topbar img{width:42px;height:42px;border-radius:50%;border:2px solid rgba(255,255,255,.3)}
+  .acc-topbar-name{color:#fff;font-weight:800;font-size:.92rem;line-height:1.1}
+  .acc-topbar-name span{display:block;font-size:.7rem;color:rgba(255,255,255,.6);font-weight:400}
+  .acc-home-btn{background:rgba(255,255,255,.15);color:#fff;border:1.5px solid rgba(255,255,255,.3);padding:7px 16px;border-radius:20px;font-size:.8rem;font-weight:700;text-decoration:none;transition:.2s;white-space:nowrap}
+  .acc-home-btn:hover{background:rgba(255,255,255,.25);color:#fbbf24}
+
+</style>
+</head>
+<body>
+<div class="cover">
+  <div style="font-size:.8rem;opacity:.7;margin-bottom:6px">AKSHAR COACHING CLASSES · CLASS VIII</div>
+  <h1>🔬 Science Study Guide</h1>
+  <h2>Force · Particulate Nature of Matter · Cells &amp; Microorganisms · Electricity</h2>
+  <div class="badges">
+    <span class="badge">📖 Key Concepts</span><span class="badge">📊 Comparison Tables</span>
+    <span class="badge">💡 Exam Tips</span><span class="badge">📝 MCQ Practice</span>
+    <span class="badge">✅ Fact Sheets</span>
+  </div>
+</div>
+
+<div class="ch-nav">
+  <button class="active" onclick="showCh('ch1',this)">⚖️ Ch1: Force</button>
+  <button onclick="showCh('ch2',this)">🧪 Ch2: Matter</button>
+  <button onclick="showCh('ch3',this)">🦠 Ch3: Cells</button>
+  <button onclick="showCh('ch4',this)">⚡ Ch4: Electricity</button>
+</div>
+
+<!-- =========== CHAPTER 1: FORCE =========== -->
+<div id="ch1" class="chapter ch1 active">
+  <div class="card">
+    <div class="card-head">⚖️ Chapter Summary — Force</div>
+    <div class="card-body">
+      <div class="key-box">
+        🔑 <strong>Force</strong> = a push or pull that changes the speed, direction, shape, or state of an object.<br>
+        Unit = <strong>Newton (N)</strong> · Force is a <strong>vector</strong> (has magnitude AND direction).
+      </div>
+      <table>
+        <tr><th>Contact Forces</th><th>Non-Contact Forces</th></tr>
+        <tr><td>Require physical touch</td><td>Act at a distance (no touch)</td></tr>
+        <tr><td>Muscular force (porter carrying load)</td><td>Gravitational force (objects falling)</td></tr>
+        <tr><td>Friction (brakes, walking)</td><td>Magnetic force (iron filings attracted)</td></tr>
+        <tr><td>Applied force (pushing door)</td><td>Electrostatic force (charged comb)</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">⚖️ Mass vs Weight — The Big Difference</div>
+    <div class="card-body">
+      <table>
+        <tr><th>Property</th><th>Mass</th><th>Weight</th></tr>
+        <tr><td>Definition</td><td>Amount of matter in an object</td><td>Gravitational pull on an object</td></tr>
+        <tr><td>Unit</td><td>Kilogram (kg)</td><td>Newton (N)</td></tr>
+        <tr><td>Measured by</td><td>Beam balance / weighing balance</td><td>Spring balance</td></tr>
+        <tr><td>Constant?</td><td>✅ Yes — same everywhere</td><td>❌ No — changes with gravity</td></tr>
+        <tr><td>On Moon</td><td>Same as on Earth</td><td>1/6 of Earth's weight</td></tr>
+        <tr><td>In space</td><td>Same</td><td>Zero (weightless)</td></tr>
+      </table>
+      <div class="trick-box">🎯 <strong>Trick to remember:</strong> Mass = Matter (both start with M). Weight = W for What gravity does to you.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">🌊 Buoyancy / Upthrust — Archimedes' Principle</div>
+    <div class="card-body">
+      <div class="key-box">
+        📌 <strong>Archimedes' Principle:</strong> The upthrust (buoyant force) = Weight of fluid displaced by the object.<br><br>
+        • Object <strong>floats</strong> → Upthrust ≥ Weight of object<br>
+        • Object <strong>sinks</strong> → Weight > Upthrust<br>
+        • Density &lt; water → floats | Density > water → sinks
+      </div>
+      <div class="grid2">
+        <div class="fact-box">🚢 <strong>Ship floats</strong> because its hollow shape displaces a large volume of water → large upthrust ≥ ship's weight.</div>
+        <div class="fact-box">🎈 <strong>Helium balloon rises</strong> because upthrust from air > weight of balloon.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">⚡ Electroscope — Detecting Electric Charge</div>
+    <div class="card-body">
+      <div class="key-box">
+        • <strong>Electroscope</strong> = device to detect presence of electric charge<br>
+        • Works on principle: <strong>Like charges repel</strong> → leaves spread apart<br>
+        • <strong>Static electricity</strong> = electric charge at rest (generated by friction — rubbing)<br>
+        • Electrostatic force can attract OR repel (unlike gravity which only attracts)
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">📝 MCQ Practice — Force (10 Questions)</div>
+    <div class="card-body">
+      <div class="mcq-q" id="f1"><p>1. Which of the following is a non-contact force?</p>
+        <div class="opts">
+          <label><input type="radio" name="f1" value="a">(a) Muscular force</label>
+          <label><input type="radio" name="f1" value="b">(b) Frictional force</label>
+          <label><input type="radio" name="f1" value="c">(c) Gravitational force</label>
+          <label><input type="radio" name="f1" value="d">(d) Applied force</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="f2"><p>2. Weight of an object is measured using a:</p>
+        <div class="opts">
+          <label><input type="radio" name="f2" value="a">(a) Beam balance</label>
+          <label><input type="radio" name="f2" value="b">(b) Spring balance</label>
+          <label><input type="radio" name="f2" value="c">(c) Thermometer</label>
+          <label><input type="radio" name="f2" value="d">(d) Ruler</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="f3"><p>3. An object sinks in water because:</p>
+        <div class="opts">
+          <label><input type="radio" name="f3" value="a">(a) It is large</label>
+          <label><input type="radio" name="f3" value="b">(b) Weight > Buoyant force</label>
+          <label><input type="radio" name="f3" value="c">(c) It is magnetic</label>
+          <label><input type="radio" name="f3" value="d">(d) It has no mass</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="f4"><p>4. Mass remains constant everywhere because:</p>
+        <div class="opts">
+          <label><input type="radio" name="f4" value="a">(a) It is measured in Newtons</label>
+          <label><input type="radio" name="f4" value="b">(b) It measures the amount of matter, independent of gravity</label>
+          <label><input type="radio" name="f4" value="c">(c) It changes with altitude</label>
+          <label><input type="radio" name="f4" value="d">(d) Gravity is constant everywhere</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="f5"><p>5. Astronauts feel weightless in space because:</p>
+        <div class="opts">
+          <label><input type="radio" name="f5" value="a">(a) They have no mass</label>
+          <label><input type="radio" name="f5" value="b">(b) They are in free fall with no contact force pushing back</label>
+          <label><input type="radio" name="f5" value="c">(c) Space has no air</label>
+          <label><input type="radio" name="f5" value="d">(d) Their weight doubles</label>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:14px">
+        <button class="btn-check" onclick="checkForce()">✅ Check</button>
+        <button class="btn-reset" onclick="resetForce()">🔄 Reset</button>
+      </div>
+      <div class="score-box" id="force-score">
+        <h2 id="force-score-text"></h2><p id="force-score-msg"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =========== CHAPTER 2: MATTER =========== -->
+<div id="ch2" class="chapter ch2">
+  <div class="card">
+    <div class="card-head" style="background:#0d47a1">🧪 Chapter Summary — Particulate Nature of Matter</div>
+    <div class="card-body">
+      <div class="key-box" style="border-color:#1976d2;background:#e3f2fd">
+        🔑 Matter = anything with mass and volume. Made of tiny constituent particles in constant random motion.
+      </div>
+      <table>
+        <tr><th>Property</th><th>Solid</th><th>Liquid</th><th>Gas</th></tr>
+        <tr><td>Shape</td><td>Fixed</td><td>No fixed shape</td><td>No fixed shape</td></tr>
+        <tr><td>Volume</td><td>Fixed</td><td>Fixed</td><td>No fixed volume</td></tr>
+        <tr><td>Compressibility</td><td>Almost zero</td><td>Very low</td><td>Very HIGH</td></tr>
+        <tr><td>Interparticle space</td><td>Minimum</td><td>Moderate</td><td>Maximum</td></tr>
+        <tr><td>Interparticle force</td><td>Maximum</td><td>Moderate</td><td>Negligible</td></tr>
+        <tr><td>Particle movement</td><td>Vibrate in place</td><td>Slide past each other</td><td>Move freely at high speed</td></tr>
+        <tr><td>Example</td><td>Ice, eraser</td><td>Water, orange juice</td><td>Air in inflatable tube</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head" style="background:#0d47a1">🌡️ Phase Changes</div>
+    <div class="card-body">
+      <table>
+        <tr><th>Process</th><th>Change</th><th>Heat</th><th>Temperature at change</th></tr>
+        <tr><td>Melting</td><td>Solid → Liquid</td><td>Absorbed</td><td>0°C (water)</td></tr>
+        <tr><td>Freezing</td><td>Liquid → Solid</td><td>Released</td><td>0°C (water)</td></tr>
+        <tr><td>Vaporisation (Boiling)</td><td>Liquid → Gas</td><td>Absorbed</td><td>100°C (water)</td></tr>
+        <tr><td>Condensation</td><td>Gas → Liquid</td><td>Released</td><td>100°C (water)</td></tr>
+        <tr><td>Sublimation</td><td>Solid → Gas (directly)</td><td>Absorbed</td><td>—</td></tr>
+      </table>
+      <div class="fact-box" style="border-color:#1976d2">
+        📌 <strong>Latent heat:</strong> Energy absorbed/released during phase change WITHOUT temperature changing. That's why the temperature-time graph has FLAT LINES at 0°C and 100°C.
+      </div>
+      <div class="fact-box" style="border-color:#1976d2">
+        📌 <strong>Boiling vs Evaporation:</strong> Boiling = throughout bulk, at fixed temp. Evaporation = surface only, at any temperature.
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head" style="background:#0d47a1">🧫 Key Experiments</div>
+    <div class="card-body">
+      <table>
+        <tr><th>Experiment</th><th>Observation</th><th>Conclusion</th></tr>
+        <tr><td>KMnO₄ crystal in water</td><td>Purple color spreads slowly without stirring</td><td>Matter has tiny particles that diffuse on their own</td></tr>
+        <tr><td>Sugar dissolves in water</td><td>Water level doesn't rise; sugar disappears</td><td>Sugar particles fill interparticle spaces of water</td></tr>
+        <tr><td>Syringe with air/water/sand</td><td>Air compresses easily, water barely, sand not at all</td><td>Compressibility: Gas > Liquid > Solid</td></tr>
+        <tr><td>Oobleck (cornflour + water)</td><td>Solid under pressure, liquid when released</td><td>Non-Newtonian fluid — doesn't follow standard classification</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head" style="background:#0d47a1">📝 MCQ Practice — Matter (10 Questions)</div>
+    <div class="card-body">
+      <div class="mcq-q" id="m1"><p>1. Which state has definite volume but no definite shape?</p>
+        <div class="opts">
+          <label><input type="radio" name="m1" value="a">(a) Solid</label>
+          <label><input type="radio" name="m1" value="b">(b) Liquid</label>
+          <label><input type="radio" name="m1" value="c">(c) Gas</label>
+          <label><input type="radio" name="m1" value="d">(d) Plasma</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="m2"><p>2. Melting point of ice is:</p>
+        <div class="opts">
+          <label><input type="radio" name="m2" value="a">(a) −38.83°C</label>
+          <label><input type="radio" name="m2" value="b">(b) 0°C</label>
+          <label><input type="radio" name="m2" value="c">(c) 100°C</label>
+          <label><input type="radio" name="m2" value="d">(d) 801°C</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="m3"><p>3. Compressibility order (highest to lowest):</p>
+        <div class="opts">
+          <label><input type="radio" name="m3" value="a">(a) Solid &gt; Liquid &gt; Gas</label>
+          <label><input type="radio" name="m3" value="b">(b) Liquid &gt; Gas &gt; Solid</label>
+          <label><input type="radio" name="m3" value="c">(c) Gas &gt; Liquid &gt; Solid</label>
+          <label><input type="radio" name="m3" value="d">(d) All equal</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="m4"><p>4. The KMnO₄ experiment proves:</p>
+        <div class="opts">
+          <label><input type="radio" name="m4" value="a">(a) Gases are lighter</label>
+          <label><input type="radio" name="m4" value="b">(b) Particles of matter are in constant random motion</label>
+          <label><input type="radio" name="m4" value="c">(c) Solids cannot melt</label>
+          <label><input type="radio" name="m4" value="d">(d) Water is a mixture</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="m5"><p>5. Temperature during boiling of water remains constant because:</p>
+        <div class="opts">
+          <label><input type="radio" name="m5" value="a">(a) No heat is applied</label>
+          <label><input type="radio" name="m5" value="b">(b) Heat is used as latent heat to break interparticle attraction</label>
+          <label><input type="radio" name="m5" value="c">(c) Water absorbs no energy</label>
+          <label><input type="radio" name="m5" value="d">(d) All water has left</label>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:14px">
+        <button class="btn-check" onclick="checkMatter()">✅ Check</button>
+        <button class="btn-reset" onclick="resetMatter()">🔄 Reset</button>
+      </div>
+      <div class="score-box" id="matter-score"><h2 id="matter-score-text"></h2><p id="matter-score-msg"></p></div>
+    </div>
+  </div>
+</div>
+
+<!-- =========== CHAPTER 3: CELLS =========== -->
+<div id="ch3" class="chapter ch3">
+  <div class="card">
+    <div class="card-head" style="background:#4a148c">🦠 Chapter Summary — Cells &amp; Microorganisms</div>
+    <div class="card-body">
+      <div class="key-box" style="border-color:#7b1fa2;background:#f3e5f5">
+        🔑 <strong>Cell = basic structural and functional unit of all living organisms</strong><br>
+        Discovered by Robert Hooke (1665) while observing cork.
+      </div>
+      <table>
+        <tr><th>Organelle</th><th>Nickname</th><th>Function</th></tr>
+        <tr><td>Nucleus</td><td>Control center / Brain</td><td>Controls all cell activities; stores DNA</td></tr>
+        <tr><td>Mitochondria</td><td>Powerhouse</td><td>Produces energy (ATP) through respiration</td></tr>
+        <tr><td>Chloroplasts</td><td>Kitchen (plants)</td><td>Photosynthesis — traps sunlight</td></tr>
+        <tr><td>Vacuoles</td><td>Storage tank</td><td>Stores food, water, waste; turgor in plants</td></tr>
+        <tr><td>Cell membrane</td><td>Gatekeeper</td><td>Controls what enters/exits the cell</td></tr>
+        <tr><td>Cell wall</td><td>Rigid armor (plants)</td><td>Gives shape and structural support (cellulose)</td></tr>
+        <tr><td>Cytoplasm</td><td>Jelly medium</td><td>Medium for chemical reactions; holds organelles</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head" style="background:#4a148c">🌿 Plant Cell vs Animal Cell</div>
+    <div class="card-body">
+      <table>
+        <tr><th>Feature</th><th>Plant Cell ✅</th><th>Animal Cell ❌</th></tr>
+        <tr><td>Cell wall</td><td>Present (cellulose)</td><td>Absent</td></tr>
+        <tr><td>Chloroplasts</td><td>Present (green)</td><td>Absent</td></tr>
+        <tr><td>Vacuoles</td><td>One large central vacuole</td><td>Several small temporary vacuoles</td></tr>
+        <tr><td>Nucleus position</td><td>Periphery (pushed by vacuole)</td><td>Central</td></tr>
+        <tr><td>Leucoplasts</td><td>Present (store starch)</td><td>Absent</td></tr>
+        <tr><td>Shape</td><td>Fixed (rectangular)</td><td>Irregular, variable</td></tr>
+      </table>
+      <div class="trick-box" style="border-color:#7b1fa2;background:#fce4ec">
+        🎯 <strong>Memory tip: CLVN</strong> — Cell wall, Large vacuole, Varous plastids, Nucleus at periphery = PLANT cell uniqueness.
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head" style="background:#4a148c">🔬 Microorganisms — Groups &amp; Roles</div>
+    <div class="card-body">
+      <table>
+        <tr><th>Group</th><th>Key Example</th><th>Useful Role</th><th>Harmful Role</th></tr>
+        <tr><td>Bacteria</td><td>Lactobacillus, Rhizobium</td><td>Curd formation, N₂ fixation, decomposition</td><td>Cholera, typhoid, TB</td></tr>
+        <tr><td>Fungi</td><td>Yeast, Bread mould (Rhizopus)</td><td>Bread making, fermentation, Penicillin</td><td>Food spoilage, athlete's foot</td></tr>
+        <tr><td>Protozoa</td><td>Amoeba, Paramecium</td><td>Aquatic food chain</td><td>Malaria (Plasmodium), dysentery</td></tr>
+        <tr><td>Algae</td><td>Spirogyra, Spirulina</td><td>Spirulina (superfood), oxygen production</td><td>Algal blooms</td></tr>
+        <tr><td>Virus</td><td>Influenza, COVID-19</td><td>Used in vaccines</td><td>Flu, COVID, HIV, polio</td></tr>
+      </table>
+      <div class="fact-box" style="border-color:#7b1fa2">
+        📌 <strong>Viruses are on the borderline of life</strong> — show no signs of life outside a host, but reproduce inside a host. NOT classified as a cell.
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head" style="background:#4a148c">🌱 Nitrogen Cycle — Key Steps</div>
+    <div class="card-body">
+      <div class="key-box" style="border-color:#7b1fa2;background:#f3e5f5">
+        1. <strong>N₂ fixation:</strong> Rhizobium (root nodules of legumes) + lightning → converts N₂ → nitrates<br>
+        2. <strong>Absorption:</strong> Plants take nitrates → proteins → consumed by animals<br>
+        3. <strong>Decomposition:</strong> Dead matter → ammonia (by decomposers)<br>
+        4. <strong>Nitrification:</strong> Ammonia → nitrates (by nitrifying bacteria)<br>
+        5. <strong>Denitrification:</strong> Nitrates → N₂ gas returned to atmosphere
+      </div>
+      <div class="warn-box">⚠️ Nitrogen is essential for: Proteins, DNA, Chlorophyll, Vitamins — all living things need it!</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head" style="background:#4a148c">📝 MCQ Practice — Cells (10 Questions)</div>
+    <div class="card-body">
+      <div class="mcq-q" id="c1"><p>1. "Powerhouse of the cell" is:</p>
+        <div class="opts">
+          <label><input type="radio" name="c1" value="a">(a) Nucleus</label>
+          <label><input type="radio" name="c1" value="b">(b) Mitochondria</label>
+          <label><input type="radio" name="c1" value="c">(c) Vacuole</label>
+          <label><input type="radio" name="c1" value="d">(d) Ribosome</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="c2"><p>2. Rhizobium bacteria help in:</p>
+        <div class="opts">
+          <label><input type="radio" name="c2" value="a">(a) Photosynthesis</label>
+          <label><input type="radio" name="c2" value="b">(b) Nitrogen fixation</label>
+          <label><input type="radio" name="c2" value="c">(c) Fermentation</label>
+          <label><input type="radio" name="c2" value="d">(d) Decomposition</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="c3"><p>3. Fermentation was first discovered by:</p>
+        <div class="opts">
+          <label><input type="radio" name="c3" value="a">(a) Charles Darwin</label>
+          <label><input type="radio" name="c3" value="b">(b) Alexander Fleming</label>
+          <label><input type="radio" name="c3" value="c">(c) Louis Pasteur</label>
+          <label><input type="radio" name="c3" value="d">(d) Robert Hooke</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="c4"><p>4. Which structure is present in plant cells but NOT in animal cells?</p>
+        <div class="opts">
+          <label><input type="radio" name="c4" value="a">(a) Cell membrane</label>
+          <label><input type="radio" name="c4" value="b">(b) Mitochondria</label>
+          <label><input type="radio" name="c4" value="c">(c) Cell wall</label>
+          <label><input type="radio" name="c4" value="d">(d) Nucleus</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="c5"><p>5. Gas released by yeast that makes bread rise:</p>
+        <div class="opts">
+          <label><input type="radio" name="c5" value="a">(a) Oxygen</label>
+          <label><input type="radio" name="c5" value="b">(b) Nitrogen</label>
+          <label><input type="radio" name="c5" value="c">(c) Carbon dioxide</label>
+          <label><input type="radio" name="c5" value="d">(d) Hydrogen</label>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:14px">
+        <button class="btn-check" onclick="checkCells()">✅ Check</button>
+        <button class="btn-reset" onclick="resetCells()">🔄 Reset</button>
+      </div>
+      <div class="score-box" id="cells-score"><h2 id="cells-score-text"></h2><p id="cells-score-msg"></p></div>
+    </div>
+  </div>
+</div>
+
+<!-- =========== CHAPTER 4: ELECTRICITY =========== -->
+<div id="ch4" class="chapter ch4">
+  <div class="card">
+    <div class="card-head" style="background:#bf360c">⚡ Chapter Summary — Electricity: Magnetic &amp; Heating Effects</div>
+    <div class="card-body">
+      <div class="key-box" style="border-color:#e64a19;background:#fbe9e7">
+        🔑 <strong>Oersted (1820):</strong> Current-carrying wire creates a magnetic field around it.<br>
+        When current stops → magnetic field disappears.
+      </div>
+      <table>
+        <tr><th>Concept</th><th>Key Facts</th></tr>
+        <tr><td>Electromagnet</td><td>Current-carrying coil + iron core = magnet that can be switched ON/OFF. Poles can be reversed by reversing current direction.</td></tr>
+        <tr><td>Strengthening electromagnet</td><td>Increase number of coil turns OR increase current magnitude OR use iron core.</td></tr>
+        <tr><td>Earth's magnetic field</td><td>Generated by movement of liquid iron in Earth's core. Helps birds/animals navigate. Shields Earth from harmful space particles.</td></tr>
+        <tr><td>Resistance</td><td>Internal opposition to current flow. Converts electrical energy → heat. Nichrome has higher resistance than copper.</td></tr>
+        <tr><td>Heating effect</td><td>Depends on: material, thickness, length of wire, and magnitude of current. Used in heaters, irons, electric furnaces.</td></tr>
+        <tr><td>Dry cell</td><td>Zinc container = negative terminal. Carbon rod + metal cap = positive terminal. Electrolyte = thick moist paste.</td></tr>
+        <tr><td>Rechargeable batteries</td><td>Li-ion batteries: use lithium + cobalt. Can be charged and reused many times.</td></tr>
+        <tr><td>Solid-state batteries</td><td>Replace liquid/paste electrolyte with solid material. Safer, faster charging, longer life. Future technology.</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head" style="background:#bf360c">🔋 Cell vs Battery — Comparison</div>
+    <div class="card-body">
+      <table>
+        <tr><th>Feature</th><th>Simple Chemical Cell (Voltaic)</th><th>Dry Cell</th><th>Rechargeable (Li-ion)</th></tr>
+        <tr><td>Electrolyte</td><td>Liquid acid/salt solution</td><td>Thick moist paste</td><td>Liquid lithium compound</td></tr>
+        <tr><td>Reusable?</td><td>No</td><td>No (single use)</td><td>Yes (hundreds of times)</td></tr>
+        <tr><td>Portability</td><td>Low (liquid spills)</td><td>High</td><td>Very high</td></tr>
+        <tr><td>(-) Terminal</td><td>Zinc</td><td>Zinc container</td><td>—</td></tr>
+        <tr><td>(+) Terminal</td><td>Copper</td><td>Carbon rod + metal cap</td><td>—</td></tr>
+      </table>
+      <div class="warn-box" style="border-color:#e64a19">⚠️ <strong>E-waste:</strong> Dead batteries contain lead, cadmium, lithium — toxic. Must be disposed at special e-waste recycling facilities, NOT regular garbage.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head" style="background:#bf360c">💡 Exam Tips — Electricity</div>
+    <div class="card-body">
+      <div class="trick-box" style="border-color:#e64a19;background:#fff3e0">
+        🎯 <strong>Trick 1:</strong> "Oersted 1820" — if the question asks who discovered magnetic effect of current, it's always Hans Christian Oersted.
+      </div>
+      <div class="trick-box" style="border-color:#e64a19;background:#fff3e0">
+        🎯 <strong>Trick 2:</strong> Dry cell = "dry" because electrolyte is thick PASTE not liquid. Don't say "no moisture" — it has some moisture.
+      </div>
+      <div class="trick-box" style="border-color:#e64a19;background:#fff3e0">
+        🎯 <strong>Trick 3:</strong> In a dry cell — Zinc = Negative (Z = Zero = negative); Carbon + metal cap = Positive.
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head" style="background:#bf360c">📝 MCQ Practice — Electricity (10 Questions)</div>
+    <div class="card-body">
+      <div class="mcq-q" id="e1"><p>1. Oersted discovered magnetic effect of current in:</p>
+        <div class="opts">
+          <label><input type="radio" name="e1" value="a">(a) 1800</label>
+          <label><input type="radio" name="e1" value="b">(b) 1820</label>
+          <label><input type="radio" name="e1" value="c">(c) 1850</label>
+          <label><input type="radio" name="e1" value="d">(d) 1900</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="e2"><p>2. Poles of an electromagnet can be reversed by:</p>
+        <div class="opts">
+          <label><input type="radio" name="e2" value="a">(a) Adding more turns</label>
+          <label><input type="radio" name="e2" value="b">(b) Changing direction of current</label>
+          <label><input type="radio" name="e2" value="c">(c) Using copper core</label>
+          <label><input type="radio" name="e2" value="d">(d) Cooling the coil</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="e3"><p>3. Nichrome wire is used in heaters because it has:</p>
+        <div class="opts">
+          <label><input type="radio" name="e3" value="a">(a) Very low resistance</label>
+          <label><input type="radio" name="e3" value="b">(b) Higher resistance than copper</label>
+          <label><input type="radio" name="e3" value="c">(c) No resistance</label>
+          <label><input type="radio" name="e3" value="d">(d) Variable resistance</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="e4"><p>4. In a dry cell, the negative terminal is:</p>
+        <div class="opts">
+          <label><input type="radio" name="e4" value="a">(a) Carbon rod</label>
+          <label><input type="radio" name="e4" value="b">(b) Metal cap</label>
+          <label><input type="radio" name="e4" value="c">(c) Zinc container</label>
+          <label><input type="radio" name="e4" value="d">(d) Electrolyte paste</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="e5"><p>5. Earth's magnetic field is generated by:</p>
+        <div class="opts">
+          <label><input type="radio" name="e5" value="a">(a) Movement of liquid iron in Earth's core</label>
+          <label><input type="radio" name="e5" value="b">(b) Tectonic plate movement</label>
+          <label><input type="radio" name="e5" value="c">(c) Ocean currents</label>
+          <label><input type="radio" name="e5" value="d">(d) Solar wind</label>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:14px">
+        <button class="btn-check" onclick="checkElec()">✅ Check</button>
+        <button class="btn-reset" onclick="resetElec()">🔄 Reset</button>
+      </div>
+      <div class="score-box" id="elec-score"><h2 id="elec-score-text"></h2><p id="elec-score-msg"></p></div>
+    </div>
+  </div>
+</div>
+
+<script>
+function showCh(id,btn){
+  document.querySelectorAll('.chapter').forEach(c=>c.classList.remove('active'));
+  document.querySelectorAll('.ch-nav button').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+function toggleAns(btn){
+  const b=btn.nextElementSibling;
+  b.style.display=b.style.display==='block'?'none':'block';
+  btn.textContent=b.style.display==='block'?'Hide':'Show Solution';
+}
+function checkQ(ans,prefix,total,scoreId,scoreTextId,scoreMsgId){
+  let score=0;
+  for(let i=1;i<=total;i++){
+    const q=prefix+i;
+    const sel=document.querySelector(`input[name="${q}"]:checked`);
+    const div=document.getElementById(q);
+    div.querySelectorAll('label').forEach(l=>l.classList.remove('correct-fl','wrong-fl'));
+    const cor=ans[q];
+    if(sel){
+      if(sel.value===cor){score++;sel.closest('label').classList.add('correct-fl');}
+      else{sel.closest('label').classList.add('wrong-fl');div.querySelector(`input[value="${cor}"]`).closest('label').classList.add('correct-fl');}
+    } else { div.querySelector(`input[value="${cor}"]`).closest('label').classList.add('correct-fl'); }
+  }
+  const box=document.getElementById(scoreId);
+  box.style.display='block';
+  const pct=Math.round(score/total*100);
+  document.getElementById(scoreTextId).textContent=score+'/'+total+' ('+pct+'%)';
+  document.getElementById(scoreMsgId).textContent=pct>=80?'🌟 Excellent!':pct>=60?'👍 Good!':pct>=40?'📚 Review chapter!':'💪 Study more!';
+}
+function resetQ(prefix,total,scoreId){
+  for(let i=1;i<=total;i++) document.querySelectorAll(`input[name="${prefix}${i}"]`).forEach(r=>r.checked=false);
+  document.querySelectorAll('label').forEach(l=>l.classList.remove('correct-fl','wrong-fl'));
+  document.getElementById(scoreId).style.display='none';
+}
+
+const forceAns={f1:'c',f2:'b',f3:'b',f4:'b',f5:'b'};
+function checkForce(){checkQ(forceAns,'f',5,'force-score','force-score-text','force-score-msg');}
+function resetForce(){resetQ('f',5,'force-score');}
+
+const matterAns={m1:'b',m2:'b',m3:'c',m4:'b',m5:'b'};
+function checkMatter(){checkQ(matterAns,'m',5,'matter-score','matter-score-text','matter-score-msg');}
+function resetMatter(){resetQ('m',5,'matter-score');}
+
+const cellsAns={c1:'b',c2:'b',c3:'c',c4:'c',c5:'c'};
+function checkCells(){checkQ(cellsAns,'c',5,'cells-score','cells-score-text','cells-score-msg');}
+function resetCells(){resetQ('c',5,'cells-score');}
+
+const elecAns={e1:'b',e2:'b',e3:'b',e4:'c',e5:'a'};
+function checkElec(){checkQ(elecAns,'e',5,'elec-score','elec-score-text','elec-score-msg');}
+function resetElec(){resetQ('e',5,'elec-score');}
+</script>
+</body>
+</html>

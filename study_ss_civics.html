@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Civics Study Guide | Class VIII</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',sans-serif;background:#f3f0ff;color:#222}
+.cover{background:linear-gradient(135deg,#1a237e,#4a148c);color:#fff;padding:36px 40px;text-align:center}
+.cover h1{font-size:2rem}.cover h2{font-size:1rem;opacity:.85;margin-top:6px}
+.badges{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:16px}
+.badge{background:rgba(255,255,255,.15);padding:6px 14px;border-radius:20px;font-size:.82rem}
+.ch-nav{display:flex;flex-wrap:wrap;gap:6px;padding:12px 16px;background:#fff;border-bottom:2px solid #d1c4e9;position:sticky;top:0;z-index:100;box-shadow:0 2px 6px rgba(0,0,0,.07)}
+.ch-nav button{padding:8px 16px;border:2px solid #512da8;border-radius:20px;background:#fff;color:#512da8;font-weight:700;cursor:pointer;font-size:.85rem;transition:.2s}
+.ch-nav button.active,.ch-nav button:hover{background:#512da8;color:#fff}
+.chapter{display:none;max-width:940px;margin:0 auto;padding:24px 20px 48px}
+.chapter.active{display:block}
+.card{background:#fff;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,.08);margin:18px 0;overflow:hidden}
+.card-head{background:#4a148c;color:#fff;padding:12px 20px;font-size:1rem;font-weight:700}
+.card-head2{background:#1a237e}
+.card-body{padding:18px 20px}
+.key-box{background:#ede7f6;border-left:5px solid #7b1fa2;border-radius:6px;padding:12px 16px;margin:10px 0;font-size:.92rem;line-height:1.8}
+.key-box2{background:#e8eaf6;border-left:5px solid #3949ab;border-radius:6px;padding:12px 16px;margin:10px 0;font-size:.92rem;line-height:1.8}
+.tip-box{background:#e8f5e9;border-left:5px solid #388e3c;border-radius:6px;padding:11px 15px;margin:10px 0;font-size:.9rem;line-height:1.7}
+.warn-box{background:#fff3e0;border-left:5px solid #f57c00;border-radius:6px;padding:11px 15px;margin:10px 0;font-size:.9rem;line-height:1.7}
+.trick-box{background:#fce4ec;border-left:5px solid #c2185b;border-radius:6px;padding:11px 15px;margin:10px 0;font-size:.9rem;line-height:1.7}
+table{width:100%;border-collapse:collapse;margin:10px 0}
+th{background:#4a148c;color:#fff;padding:9px 12px;text-align:left;font-size:.87rem}
+.ch2-th th{background:#1a237e}
+td{padding:8px 12px;border-bottom:1px solid #e0e0e0;font-size:.9rem}
+tr:nth-child(even) td{background:#f5f0ff}
+.mcq-q{background:#fafafa;border-radius:8px;padding:13px;margin:12px 0;border-left:4px solid #7b1fa2}
+.mcq-q p{font-weight:600;margin-bottom:10px;line-height:1.5}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.opts label{padding:8px 11px;border:1.5px solid #ccc;border-radius:6px;cursor:pointer;font-size:.89rem;display:flex;align-items:center;gap:7px;transition:.2s}
+.opts label:hover{border-color:#7b1fa2;background:#ede7f6}
+input[type=radio]{accent-color:#4a148c}
+.ans-box{background:#ede7f6;border:1.5px solid #ce93d8;border-radius:6px;padding:10px 14px;margin-top:8px;display:none;font-size:.9rem;line-height:1.7}
+.btn-ans{background:#7b1fa2;color:#fff;border:none;padding:7px 14px;border-radius:6px;cursor:pointer;font-size:.83rem;margin-top:8px}
+textarea{width:100%;border:1.5px solid #bbb;border-radius:6px;padding:10px;font-family:inherit;font-size:.92rem;margin-top:6px;resize:vertical}
+textarea:focus{outline:none;border-color:#4a148c}
+.btn-check{background:#4a148c;color:#fff;border:none;padding:11px 26px;border-radius:8px;cursor:pointer;font-size:.95rem;font-weight:700;margin:12px 4px}
+.btn-reset{background:#e53935;color:#fff;border:none;padding:11px 26px;border-radius:8px;cursor:pointer;font-size:.95rem;font-weight:700}
+.score-box{display:none;background:linear-gradient(135deg,#1a237e,#4a148c);color:#fff;border-radius:10px;padding:20px;text-align:center;margin:14px 0}
+.correct-fl{background:#e8f5e9!important;border-color:#43a047!important}
+.wrong-fl{background:#ffebee!important;border-color:#e53935!important}
+.article-card{background:#ede7f6;border-radius:8px;padding:12px 16px;margin:8px 0;border:1.5px solid #ce93d8}
+.article-num{font-weight:800;color:#4a148c;font-size:1.1rem}
+.article-desc{font-size:.9rem;margin-top:4px;line-height:1.6}
+@media(max-width:600px){.opts{grid-template-columns:1fr}}
+
+  /* ── ACC NAV BAR ── */
+  .acc-topbar{display:flex;align-items:center;justify-content:space-between;background:linear-gradient(135deg,#0d1b4b,#1a2e7a);padding:10px 24px;position:sticky;top:0;z-index:999;box-shadow:0 2px 12px rgba(0,0,0,.3)}
+  .acc-topbar-left{display:flex;align-items:center;gap:12px}
+  .acc-topbar img{width:42px;height:42px;border-radius:50%;border:2px solid rgba(255,255,255,.3)}
+  .acc-topbar-name{color:#fff;font-weight:800;font-size:.92rem;line-height:1.1}
+  .acc-topbar-name span{display:block;font-size:.7rem;color:rgba(255,255,255,.6);font-weight:400}
+  .acc-home-btn{background:rgba(255,255,255,.15);color:#fff;border:1.5px solid rgba(255,255,255,.3);padding:7px 16px;border-radius:20px;font-size:.8rem;font-weight:700;text-decoration:none;transition:.2s;white-space:nowrap}
+  .acc-home-btn:hover{background:rgba(255,255,255,.25);color:#fbbf24}
+
+</style>
+</head>
+<body>
+<div class="cover">
+  <div style="font-size:.8rem;opacity:.7;margin-bottom:6px">AKSHAR COACHING CLASSES · CLASS VIII</div>
+  <h1>🗳️ Civics Study Guide</h1>
+  <h2>Universal Adult Franchise &nbsp;|&nbsp; Judiciary in India</h2>
+  <div class="badges">
+    <span class="badge">📜 Key Articles</span><span class="badge">🏛️ Structure of Judiciary</span>
+    <span class="badge">💡 Exam Tips</span><span class="badge">📝 MCQ Practice</span><span class="badge">📋 Q&amp;A</span>
+  </div>
+</div>
+
+<div class="ch-nav">
+  <button class="active" onclick="showCh('uf',this)">🗳️ Universal Adult Franchise</button>
+  <button onclick="showCh('jud',this)">⚖️ Judiciary in India</button>
+</div>
+
+<!-- ===== FRANCHISE ===== -->
+<div id="uf" class="chapter active">
+
+  <div class="card">
+    <div class="card-head">🗳️ What is Universal Adult Franchise?</div>
+    <div class="card-body">
+      <div class="key-box">
+        🔑 <strong>Universal Adult Franchise</strong> = The right of every adult citizen (18+) to vote irrespective of caste, religion, gender, education, or wealth.<br><br>
+        Principle: <strong>One person = One vote = One value</strong><br>
+        Constitutional basis: <strong>Article 326</strong> of the Indian Constitution
+      </div>
+      <table>
+        <tr><th>Feature</th><th>Details</th></tr>
+        <tr><td>Minimum voting age</td><td>18 years (lowered from 21 by 61st Constitutional Amendment, 1988)</td></tr>
+        <tr><td>Lok Sabha seats</td><td>543 elected seats</td></tr>
+        <tr><td>Lok Sabha term</td><td>5 years</td></tr>
+        <tr><td>Rajya Sabha term</td><td>6 years (permanent house — no dissolution)</td></tr>
+        <tr><td>Rajya Sabha presiding officer</td><td>Vice President of India</td></tr>
+        <tr><td>Lok Sabha presiding officer</td><td>Speaker</td></tr>
+        <tr><td>Election system (Lok Sabha)</td><td>First-Past-the-Post (FPTP)</td></tr>
+        <tr><td>Vice President election</td><td>Proportional Representation by Single Transferable Vote</td></tr>
+        <tr><td>National elections conducted by</td><td>Election Commission of India (ECI)</td></tr>
+        <tr><td>Local body elections conducted by</td><td>State Election Commission</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">📜 Key Constitutional Articles</div>
+    <div class="card-body">
+      <div class="article-card">
+        <div class="article-num">Article 326</div>
+        <div class="article-desc">Mandates Universal Adult Franchise — every election shall be based on adult suffrage (18+). This is the constitutional backbone of Indian democracy.</div>
+      </div>
+      <div class="article-card">
+        <div class="article-num">Article 324</div>
+        <div class="article-desc">Establishes the Election Commission of India as an independent constitutional body for superintendence, direction, and control of elections.</div>
+      </div>
+      <div class="article-card">
+        <div class="article-num">61st Constitutional Amendment (1988)</div>
+        <div class="article-desc">Lowered voting age from 21 to 18 years — included youth in political participation.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">🏛️ Lok Sabha vs Rajya Sabha</div>
+    <div class="card-body">
+      <table>
+        <tr><th>Feature</th><th>Lok Sabha (Lower House)</th><th>Rajya Sabha (Upper House)</th></tr>
+        <tr><td>Members elected by</td><td>Directly by the people (public vote)</td><td>Indirectly by State Legislative Assembly members</td></tr>
+        <tr><td>Who it represents</td><td>People of India</td><td>States of India</td></tr>
+        <tr><td>Total elected seats</td><td>543</td><td>238 elected + 12 nominated</td></tr>
+        <tr><td>Term</td><td>5 years (can be dissolved)</td><td>6 years (permanent — never dissolved)</td></tr>
+        <tr><td>Presiding officer</td><td>Speaker</td><td>Vice President (ex-officio Chairman)</td></tr>
+        <tr><td>Leader of majority becomes</td><td>Prime Minister</td><td>Leader of the House</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">🔑 Key Terms — Franchise</div>
+    <div class="card-body">
+      <table>
+        <tr><th>Term</th><th>Meaning</th></tr>
+        <tr><td>Universal Adult Franchise</td><td>Right to vote for all citizens 18+ regardless of any condition</td></tr>
+        <tr><td>Constituency</td><td>Specific geographic area from which one representative is elected</td></tr>
+        <tr><td>First-Past-the-Post (FPTP)</td><td>Candidate with most votes wins — no need for majority</td></tr>
+        <tr><td>Secret Ballot</td><td>Voter's choice is strictly confidential — prevents intimidation</td></tr>
+        <tr><td>Model Code of Conduct</td><td>Rules issued by ECI to regulate campaign behavior — no bribing, no misuse of govt resources</td></tr>
+        <tr><td>EVM</td><td>Electronic Voting Machine — records votes electronically</td></tr>
+        <tr><td>MP</td><td>Member of Parliament — elected to Lok Sabha or Rajya Sabha; makes laws</td></tr>
+        <tr><td>MLA</td><td>Member of Legislative Assembly — elected to state legislature</td></tr>
+        <tr><td>Rule of Law</td><td>All citizens, including leaders, are subject to the same laws</td></tr>
+        <tr><td>Indelible ink</td><td>Ink marked on finger on Election Day to prevent double voting</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">💡 Exam Tips — Franchise</div>
+    <div class="card-body">
+      <div class="trick-box">🎯 61st Amendment = 1988 = voting age lowered to 18. This is a very common MCQ. Don't confuse with 42nd Amendment (which changed other things).</div>
+      <div class="trick-box">🎯 ECI = Article 324 (not 326). Article 326 = Universal Adult Franchise. Learn both separately!</div>
+      <div class="trick-box">🎯 Rajya Sabha = "Upper House" = represents States = term 6 years = Vice President presides. Lok Sabha = "Lower House" = represents People = term 5 years = Speaker presides.</div>
+      <div class="tip-box">📌 FPTP = "First Past The Post" — the candidate with the MOST votes wins, even if they don't have 50%+. Simple, gives stable majority.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">📝 MCQ Practice — Franchise</div>
+    <div class="card-body">
+      <div class="mcq-q" id="u1"><p>1. Minimum voting age in India is:</p>
+        <div class="opts">
+          <label><input type="radio" name="u1" value="a">(a) 16</label>
+          <label><input type="radio" name="u1" value="b">(b) 18</label>
+          <label><input type="radio" name="u1" value="c">(c) 21</label>
+          <label><input type="radio" name="u1" value="d">(d) 25</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="u2"><p>2. Article 326 of the Constitution refers to:</p>
+        <div class="opts">
+          <label><input type="radio" name="u2" value="a">(a) Fundamental Rights</label>
+          <label><input type="radio" name="u2" value="b">(b) Universal Adult Franchise</label>
+          <label><input type="radio" name="u2" value="c">(c) Directive Principles</label>
+          <label><input type="radio" name="u2" value="d">(d) Emergency powers</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="u3"><p>3. The 61st Amendment lowered the voting age to 18 in:</p>
+        <div class="opts">
+          <label><input type="radio" name="u3" value="a">(a) 1967</label>
+          <label><input type="radio" name="u3" value="b">(b) 1975</label>
+          <label><input type="radio" name="u3" value="c">(c) 1988</label>
+          <label><input type="radio" name="u3" value="d">(d) 1995</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="u4"><p>4. Total number of elected Lok Sabha seats:</p>
+        <div class="opts">
+          <label><input type="radio" name="u4" value="a">(a) 540</label>
+          <label><input type="radio" name="u4" value="b">(b) 543</label>
+          <label><input type="radio" name="u4" value="c">(c) 550</label>
+          <label><input type="radio" name="u4" value="d">(d) 552</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="u5"><p>5. The presiding officer of the Rajya Sabha is:</p>
+        <div class="opts">
+          <label><input type="radio" name="u5" value="a">(a) Speaker</label>
+          <label><input type="radio" name="u5" value="b">(b) President</label>
+          <label><input type="radio" name="u5" value="c">(c) Vice President</label>
+          <label><input type="radio" name="u5" value="d">(d) Prime Minister</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="u6"><p>6. Local body elections are conducted by:</p>
+        <div class="opts">
+          <label><input type="radio" name="u6" value="a">(a) Election Commission of India</label>
+          <label><input type="radio" name="u6" value="b">(b) Supreme Court</label>
+          <label><input type="radio" name="u6" value="c">(c) State Election Commission</label>
+          <label><input type="radio" name="u6" value="d">(d) Parliament</label>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:14px">
+        <button class="btn-check" onclick="checkU()">✅ Check</button>
+        <button class="btn-reset" onclick="resetU()">🔄 Reset</button>
+      </div>
+      <div class="score-box" id="u-score"><h2 id="u-score-text"></h2><p id="u-score-msg"></p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== JUDICIARY ===== -->
+<div id="jud" class="chapter">
+
+  <div class="card">
+    <div class="card-head card-head2">⚖️ Structure of Indian Judiciary</div>
+    <div class="card-body">
+      <div class="key-box2">
+        🔑 India has a <strong>Single Integrated Judiciary</strong> — decisions of higher courts are binding on all lower courts. Supreme Court at apex.<br>
+        Hierarchy: <strong>Supreme Court → High Court → District Court → Subordinate Courts</strong>
+      </div>
+      <table class="ch2-th">
+        <tr><th>Court</th><th>Location</th><th>Key Facts</th></tr>
+        <tr><td>Supreme Court</td><td>New Delhi</td><td>Chief Justice + max 33 other judges. Retirement age: 65. Appointed by President.</td></tr>
+        <tr><td>High Court</td><td>State capital (Benches in other cities)</td><td>Oldest = Calcutta High Court. Retirement age: 62.</td></tr>
+        <tr><td>District Court</td><td>District headquarters</td><td>Civil cases = District Judge; Criminal cases = Sessions Judge. Appointed by Governor.</td></tr>
+        <tr><td>Lok Adalat</td><td>Across India</td><td>First held 1982 in Junagarh, Gujarat. Quick, inexpensive, compromise-based. Decisions final, no appeal.</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head card-head2">⚖️ Jurisdictions of the Supreme Court</div>
+    <div class="card-body">
+      <table class="ch2-th">
+        <tr><th>Jurisdiction</th><th>Meaning</th><th>Example</th></tr>
+        <tr><td>Original</td><td>Cases that go directly to SC (not through lower courts)</td><td>Disputes between two or more states (e.g., Kaveri river dispute)</td></tr>
+        <tr><td>Appellate</td><td>Hears appeals against High Court judgments</td><td>Constitutional, civil, and criminal appeals</td></tr>
+        <tr><td>Advisory</td><td>President asks SC for legal opinion (non-binding)</td><td>President seeks opinion on constitutional questions</td></tr>
+        <tr><td>Court of Record</td><td>SC decisions are permanent records; carry evidentiary value; serve as precedents</td><td>Previous SC judgments cited in future cases</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head card-head2">📜 Key Writs (for Fundamental Rights)</div>
+    <div class="card-body">
+      <table class="ch2-th">
+        <tr><th>Writ</th><th>Meaning (Latin)</th><th>Used for</th></tr>
+        <tr><td>Habeas Corpus</td><td>"You may have the body"</td><td>No unlawful detention — person must be produced before court</td></tr>
+        <tr><td>Mandamus</td><td>"We command"</td><td>Court orders a public authority to do its duty</td></tr>
+        <tr><td>Certiorari</td><td>"To be certified"</td><td>Higher court reviews lower court's decision</td></tr>
+        <tr><td>Prohibition</td><td>"To forbid"</td><td>Stops a lower court from exceeding its jurisdiction</td></tr>
+        <tr><td>Quo Warranto</td><td>"By what authority"</td><td>Challenges whether a person legally holds a public office</td></tr>
+      </table>
+      <div class="key-box2">
+        📌 Under <strong>Article 32</strong>, citizens can directly approach the Supreme Court to enforce Fundamental Rights. Under <strong>Article 226</strong>, they can approach High Courts.
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head card-head2">🔑 PIL — Public Interest Litigation</div>
+    <div class="card-body">
+      <div class="key-box2">
+        <strong>PIL = Public Interest Litigation</strong><br><br>
+        • Any citizen or organization can file it — even without being a direct victim<br>
+        • Can be a simple letter or telegram to High Court or Supreme Court<br>
+        • Court can also take <strong>Suo Motu</strong> action (on its own, based on news reports)<br>
+        • Has addressed: pollution, bonded labour, custodial torture, human rights<br>
+        • Called the <strong>"poor man's court"</strong> — very low cost, highly accessible
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head card-head2">⚖️ Independence of Judiciary — Safeguards</div>
+    <div class="card-body">
+      <table class="ch2-th">
+        <tr><th>Safeguard</th><th>How it ensures independence</th></tr>
+        <tr><td>Security of Tenure</td><td>SC judges serve until 65, HC until 62 — cannot be removed easily</td></tr>
+        <tr><td>Impeachment</td><td>Removal only through address by both Houses of Parliament with special majority — very difficult process</td></tr>
+        <tr><td>Fixed Salaries</td><td>Salaries charged to Consolidated Fund of India — cannot be reduced to put pressure on judges</td></tr>
+        <tr><td>No Parliamentary Discussion</td><td>Official conduct of judges cannot be discussed in Parliament</td></tr>
+        <tr><td>Separation of Powers</td><td>Judiciary kept independent from Legislature and Executive</td></tr>
+        <tr><td>Qualification-based Appointment</td><td>Judges appointed by President based on legal qualifications — not political favor</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head card-head2">💡 Exam Tips — Judiciary</div>
+    <div class="card-body">
+      <div class="trick-box" style="border-color:#1976d2;background:#e3f2fd">🎯 Remember: SC = 65 retirement age. HC = 62 retirement age. District judges appointed by <strong>Governor</strong> (not President).</div>
+      <div class="trick-box" style="border-color:#1976d2;background:#e3f2fd">🎯 Oldest High Court = <strong>Calcutta High Court</strong>. First Lok Adalat = 1982 in <strong>Junagarh, Gujarat</strong>. First woman SC judge = <strong>Fathima Beevi</strong>.</div>
+      <div class="trick-box" style="border-color:#1976d2;background:#e3f2fd">🎯 Lok Adalat = NO court fees + decisions are FINAL (no appeal possible). This is commonly tested.</div>
+      <div class="tip-box">📌 PIL can be filed even through a <strong>letter or telegram</strong> to the Supreme Court or High Court. The court can also take action Suo Motu (on its own). This is what makes it unique and accessible to the poor.</div>
+      <div class="tip-box">📌 Original Jurisdiction of SC = disputes BETWEEN states (e.g., water disputes). Goes directly to SC without passing through High Court.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head card-head2">📝 Short Answer Practice — Judiciary</div>
+    <div class="card-body">
+      <div class="mcq-q" style="border-color:#1976d2">
+        <p>1. What is Public Interest Litigation (PIL)? Why is it called the "poor man's court"?</p>
+        <textarea rows="3"></textarea>
+        <button class="btn-ans" style="background:#1a237e" onclick="toggleAns(this)">Show Answer</button>
+        <div class="ans-box">PIL (Public Interest Litigation) allows any citizen or organization to file a case on behalf of those whose rights are being violated, even without being a direct victim. It can be initiated through a simple letter or telegram (no complex procedures, very low cost). The court can also take Suo Motu action. It is called the "poor man's court" because: no high court fees are required, complex legal formalities are waived, and it brings justice to those who cannot afford high-profile lawyers.</div>
+      </div>
+      <div class="mcq-q" style="border-color:#1976d2">
+        <p>2. Explain any three measures that ensure the independence of the Indian Judiciary.</p>
+        <textarea rows="3"></textarea>
+        <button class="btn-ans" style="background:#1a237e" onclick="toggleAns(this)">Show Answer</button>
+        <div class="ans-box">(i) <strong>Security of Tenure:</strong> SC judges serve until 65, HC judges until 62 — they cannot be removed easily or at will.<br>(ii) <strong>Fixed Salaries:</strong> Salaries are charged to the Consolidated Fund of India and cannot be reduced — prevents financial pressure.<br>(iii) <strong>Impeachment:</strong> Removal requires a difficult process — address passed by both Houses of Parliament with special majority, then Presidential order. This prevents hasty dismissal for political reasons.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head card-head2">📝 MCQ Practice — Judiciary</div>
+    <div class="card-body">
+      <div class="mcq-q" id="j1" style="border-left-color:#1976d2"><p>1. The highest court of justice in India is:</p>
+        <div class="opts">
+          <label><input type="radio" name="j1" value="a">(a) High Court</label>
+          <label><input type="radio" name="j1" value="b">(b) District Court</label>
+          <label><input type="radio" name="j1" value="c">(c) Supreme Court</label>
+          <label><input type="radio" name="j1" value="d">(d) Lok Adalat</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="j2" style="border-left-color:#1976d2"><p>2. A Supreme Court judge retires at age:</p>
+        <div class="opts">
+          <label><input type="radio" name="j2" value="a">(a) 62</label>
+          <label><input type="radio" name="j2" value="b">(b) 65</label>
+          <label><input type="radio" name="j2" value="c">(c) 60</label>
+          <label><input type="radio" name="j2" value="d">(d) 70</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="j3" style="border-left-color:#1976d2"><p>3. The first woman judge of the Supreme Court was:</p>
+        <div class="opts">
+          <label><input type="radio" name="j3" value="a">(a) Leila Seth</label>
+          <label><input type="radio" name="j3" value="b">(b) Fathima Beevi</label>
+          <label><input type="radio" name="j3" value="c">(c) Ruma Pal</label>
+          <label><input type="radio" name="j3" value="d">(d) Indu Malhotra</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="j4" style="border-left-color:#1976d2"><p>4. PIL can be filed by:</p>
+        <div class="opts">
+          <label><input type="radio" name="j4" value="a">(a) Only the victim</label>
+          <label><input type="radio" name="j4" value="b">(b) Only the government</label>
+          <label><input type="radio" name="j4" value="c">(c) Any person or the court itself</label>
+          <label><input type="radio" name="j4" value="d">(d) Only lawyers</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="j5" style="border-left-color:#1976d2"><p>5. The first Lok Adalat was held in 1982 in:</p>
+        <div class="opts">
+          <label><input type="radio" name="j5" value="a">(a) Delhi</label>
+          <label><input type="radio" name="j5" value="b">(b) Junagarh, Gujarat</label>
+          <label><input type="radio" name="j5" value="c">(c) Mumbai</label>
+          <label><input type="radio" name="j5" value="d">(d) Chennai</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="j6" style="border-left-color:#1976d2"><p>6. Original Jurisdiction of the Supreme Court means:</p>
+        <div class="opts">
+          <label><input type="radio" name="j6" value="a">(a) SC hears appeals from HC</label>
+          <label><input type="radio" name="j6" value="b">(b) Cases that come directly to SC including inter-state disputes</label>
+          <label><input type="radio" name="j6" value="c">(c) President asks SC for advice</label>
+          <label><input type="radio" name="j6" value="d">(d) SC can review its own orders</label>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:14px">
+        <button class="btn-check" onclick="checkJ()">✅ Check</button>
+        <button class="btn-reset" onclick="resetJ()">🔄 Reset</button>
+      </div>
+      <div class="score-box" id="j-score"><h2 id="j-score-text"></h2><p id="j-score-msg"></p></div>
+    </div>
+  </div>
+</div>
+
+<script>
+function showCh(id,btn){
+  document.querySelectorAll('.chapter').forEach(c=>c.classList.remove('active'));
+  document.querySelectorAll('.ch-nav button').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+function toggleAns(btn){
+  const b=btn.nextElementSibling;
+  b.style.display=b.style.display==='block'?'none':'block';
+  btn.textContent=b.style.display==='block'?'Hide Answer':'Show Answer';
+}
+function checkQ(ans,ids,scoreId,stId,smId){
+  let score=0;
+  ids.forEach(q=>{
+    const sel=document.querySelector(`input[name="${q}"]:checked`);
+    const div=document.getElementById(q);
+    div.querySelectorAll('label').forEach(l=>l.classList.remove('correct-fl','wrong-fl'));
+    const cor=ans[q];
+    if(sel){
+      if(sel.value===cor){score++;sel.closest('label').classList.add('correct-fl');}
+      else{sel.closest('label').classList.add('wrong-fl');div.querySelector(`input[value="${cor}"]`).closest('label').classList.add('correct-fl');}
+    } else {div.querySelector(`input[value="${cor}"]`).closest('label').classList.add('correct-fl');}
+  });
+  document.getElementById(scoreId).style.display='block';
+  const pct=Math.round(score/ids.length*100);
+  document.getElementById(stId).textContent=score+'/'+ids.length+' ('+pct+'%)';
+  document.getElementById(smId).textContent=pct>=80?'🌟 Excellent!':pct>=60?'👍 Good!':'📚 Review the chapter!';
+}
+function resetQ(ids,scoreId){
+  ids.forEach(q=>document.querySelectorAll(`input[name="${q}"]`).forEach(r=>r.checked=false));
+  document.querySelectorAll('label').forEach(l=>l.classList.remove('correct-fl','wrong-fl'));
+  document.getElementById(scoreId).style.display='none';
+}
+const uAns={u1:'b',u2:'b',u3:'c',u4:'b',u5:'c',u6:'c'};
+function checkU(){checkQ(uAns,['u1','u2','u3','u4','u5','u6'],'u-score','u-score-text','u-score-msg');}
+function resetU(){resetQ(['u1','u2','u3','u4','u5','u6'],'u-score');}
+const jAns={j1:'c',j2:'b',j3:'b',j4:'c',j5:'b',j6:'b'};
+function checkJ(){checkQ(jAns,['j1','j2','j3','j4','j5','j6'],'j-score','j-score-text','j-score-msg');}
+function resetJ(){resetQ(['j1','j2','j3','j4','j5','j6'],'j-score');}
+</script>
+</body>
+</html>

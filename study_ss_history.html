@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>History Study Guide | Class VIII</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',sans-serif;background:#fef6ee;color:#222}
+.cover{background:linear-gradient(135deg,#4e342e,#6d4c41);color:#fff;padding:36px 40px;text-align:center}
+.cover h1{font-size:2rem}.cover h2{font-size:1rem;opacity:.85;margin-top:6px}
+.badges{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:16px}
+.badge{background:rgba(255,255,255,.15);padding:6px 14px;border-radius:20px;font-size:.82rem}
+.ch-nav{display:flex;flex-wrap:wrap;gap:6px;padding:12px 16px;background:#fff;border-bottom:2px solid #d7ccc8;position:sticky;top:0;z-index:100;box-shadow:0 2px 6px rgba(0,0,0,.07)}
+.ch-nav button{padding:8px 16px;border:2px solid #6d4c41;border-radius:20px;background:#fff;color:#6d4c41;font-weight:700;cursor:pointer;font-size:.85rem;transition:.2s}
+.ch-nav button.active,.ch-nav button:hover{background:#6d4c41;color:#fff}
+.chapter{display:none;max-width:940px;margin:0 auto;padding:24px 20px 48px}
+.chapter.active{display:block}
+.card{background:#fff;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,.08);margin:18px 0;overflow:hidden}
+.card-head{background:#4e342e;color:#fff;padding:12px 20px;font-size:1rem;font-weight:700}
+.card-body{padding:18px 20px}
+.key-box{background:#efebe9;border-left:5px solid #6d4c41;border-radius:6px;padding:12px 16px;margin:10px 0;font-size:.92rem;line-height:1.8}
+.date-box{background:#fff3e0;border-left:5px solid #f57c00;border-radius:6px;padding:11px 15px;margin:10px 0;font-size:.9rem;line-height:1.8}
+.tip-box{background:#e8f5e9;border-left:5px solid #388e3c;border-radius:6px;padding:11px 15px;margin:10px 0;font-size:.9rem;line-height:1.7}
+.trick-box{background:#fce4ec;border-left:5px solid #c2185b;border-radius:6px;padding:11px 15px;margin:10px 0;font-size:.9rem;line-height:1.7}
+table{width:100%;border-collapse:collapse;margin:10px 0}
+th{background:#4e342e;color:#fff;padding:9px 12px;text-align:left;font-size:.87rem}
+td{padding:8px 12px;border-bottom:1px solid #e0e0e0;font-size:.9rem}
+tr:nth-child(even) td{background:#fdf3ee}
+.mcq-q{background:#fafafa;border-radius:8px;padding:13px;margin:12px 0;border-left:4px solid #6d4c41}
+.mcq-q p{font-weight:600;margin-bottom:10px;line-height:1.5}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.opts label{padding:8px 11px;border:1.5px solid #ccc;border-radius:6px;cursor:pointer;font-size:.89rem;display:flex;align-items:center;gap:7px;transition:.2s}
+.opts label:hover{border-color:#6d4c41;background:#efebe9}
+input[type=radio]{accent-color:#6d4c41}
+.ans-box{background:#efebe9;border:1.5px solid #bcaaa4;border-radius:6px;padding:10px 14px;margin-top:8px;display:none;font-size:.9rem;line-height:1.7}
+.btn-ans{background:#6d4c41;color:#fff;border:none;padding:7px 14px;border-radius:6px;cursor:pointer;font-size:.83rem;margin-top:8px}
+textarea{width:100%;border:1.5px solid #bbb;border-radius:6px;padding:10px;font-family:inherit;font-size:.92rem;margin-top:6px;resize:vertical}
+textarea:focus{outline:none;border-color:#6d4c41}
+.btn-check{background:#4e342e;color:#fff;border:none;padding:11px 26px;border-radius:8px;cursor:pointer;font-size:.95rem;font-weight:700;margin:12px 4px}
+.btn-reset{background:#e53935;color:#fff;border:none;padding:11px 26px;border-radius:8px;cursor:pointer;font-size:.95rem;font-weight:700}
+.score-box{display:none;background:linear-gradient(135deg,#4e342e,#6d4c41);color:#fff;border-radius:10px;padding:20px;text-align:center;margin:14px 0}
+.correct-fl{background:#e8f5e9!important;border-color:#43a047!important}
+.wrong-fl{background:#ffebee!important;border-color:#e53935!important}
+.timeline{position:relative;padding-left:24px;border-left:3px solid #6d4c41;margin:10px 0}
+.tl-item{margin:12px 0;position:relative}
+.tl-item::before{content:'';position:absolute;left:-31px;top:5px;width:12px;height:12px;border-radius:50%;background:#6d4c41;border:2px solid #fff;box-shadow:0 0 0 2px #6d4c41}
+.tl-date{font-weight:700;color:#4e342e;font-size:.88rem}
+.tl-event{font-size:.91rem;color:#333;margin-top:2px}
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:600px){.opts,.match-grid{grid-template-columns:1fr}}
+
+  /* ── ACC NAV BAR ── */
+  .acc-topbar{display:flex;align-items:center;justify-content:space-between;background:linear-gradient(135deg,#0d1b4b,#1a2e7a);padding:10px 24px;position:sticky;top:0;z-index:999;box-shadow:0 2px 12px rgba(0,0,0,.3)}
+  .acc-topbar-left{display:flex;align-items:center;gap:12px}
+  .acc-topbar img{width:42px;height:42px;border-radius:50%;border:2px solid rgba(255,255,255,.3)}
+  .acc-topbar-name{color:#fff;font-weight:800;font-size:.92rem;line-height:1.1}
+  .acc-topbar-name span{display:block;font-size:.7rem;color:rgba(255,255,255,.6);font-weight:400}
+  .acc-home-btn{background:rgba(255,255,255,.15);color:#fff;border:1.5px solid rgba(255,255,255,.3);padding:7px 16px;border-radius:20px;font-size:.8rem;font-weight:700;text-decoration:none;transition:.2s;white-space:nowrap}
+  .acc-home-btn:hover{background:rgba(255,255,255,.25);color:#fbbf24}
+
+</style>
+</head>
+<body>
+<div class="cover">
+  <div style="font-size:.8rem;opacity:.7;margin-bottom:6px">AKSHAR COACHING CLASSES · CLASS VIII</div>
+  <h1>🏰 History Study Guide</h1>
+  <h2>Ch-2: Reshaping India's Political Map &nbsp;|&nbsp; Ch-3: Rise of the Marathas</h2>
+  <div class="badges">
+    <span class="badge">📅 Key Dates</span><span class="badge">👑 Rulers</span>
+    <span class="badge">⚔️ Battles</span><span class="badge">💡 Exam Tips</span>
+    <span class="badge">📝 MCQ Practice</span><span class="badge">📋 Q&amp;A Bank</span>
+  </div>
+</div>
+
+<div class="ch-nav">
+  <button class="active" onclick="showCh('ch2',this)">🏯 Ch-2: Medieval India</button>
+  <button onclick="showCh('ch3',this)">⚔️ Ch-3: Marathas</button>
+</div>
+
+<!-- ===== CHAPTER 2 ===== -->
+<div id="ch2" class="chapter active">
+
+  <div class="card">
+    <div class="card-head">📅 Quick Timeline — Medieval India</div>
+    <div class="card-body">
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-date">11th–17th century</div><div class="tl-event">The "Medieval" period in Indian history (derived from European term meaning "between two ages")</div></div>
+        <div class="tl-item"><div class="tl-date">1192</div><div class="tl-event">Battle of Tarain — Muhammad Ghori defeats Prithviraj Chauhan → Delhi Sultanate begins</div></div>
+        <div class="tl-item"><div class="tl-date">1206–1526</div><div class="tl-event">Delhi Sultanate — 5 dynasties: Slave, Khilji, Tughlaq, Sayyid, Lodi</div></div>
+        <div class="tl-item"><div class="tl-date">1336</div><div class="tl-event">Vijayanagara Empire founded by Harihara and Bukka (capital = Hampi)</div></div>
+        <div class="tl-item"><div class="tl-date">1526</div><div class="tl-event">First Battle of Panipat — Babur defeats Ibrahim Lodi → Mughal Empire begins</div></div>
+        <div class="tl-item"><div class="tl-date">1556–1605</div><div class="tl-event">Akbar's reign — sulh-i kul (peace with all), abolished jizya, Rajput alliances</div></div>
+        <div class="tl-item"><div class="tl-date">1565</div><div class="tl-event">Battle of Talikota — Vijayanagara Empire destroyed</div></div>
+        <div class="tl-item"><div class="tl-date">1658–1707</div><div class="tl-event">Aurangzeb's reign — reimposed jizya, banned music, destroyed temples</div></div>
+        <div class="tl-item"><div class="tl-date">1671</div><div class="tl-event">Battle of Saraighat — Lachit Borphukan (Ahom) defeats Mughals</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">👑 Key Rulers — One-Line Facts</div>
+    <div class="card-body">
+      <table>
+        <tr><th>Ruler</th><th>Empire/Dynasty</th><th>Key Fact</th></tr>
+        <tr><td>Qutub-ud-din Aibak</td><td>Slave Dynasty (Delhi Sultanate)</td><td>Built Qutub Minar; Quwwat-ul-Islam mosque using 27 temple materials</td></tr>
+        <tr><td>Ala-ud-din Khilji</td><td>Khilji Dynasty</td><td>"Second Alexander"; used token currency; market reforms</td></tr>
+        <tr><td>Muhammad bin Tughlaq</td><td>Tughlaq Dynasty</td><td>Moved capital to Daulatabad (then back); token currency failed</td></tr>
+        <tr><td>Harihara &amp; Bukka</td><td>Vijayanagara Empire</td><td>Founded in 1336; capital = Hampi; rejected Delhi Sultanate</td></tr>
+        <tr><td>Narasimhadeva I</td><td>Eastern Ganga Kingdom</td><td>Repelled Sultanate invasions; built Surya temple at Konark</td></tr>
+        <tr><td>Krishnadevaraya</td><td>Vijayanagara Empire</td><td>Greatest ruler; wrote Amuktamalyada (Telugu); "musical pillars"</td></tr>
+        <tr><td>Babur</td><td>Mughal Empire</td><td>Founded 1526 (Panipat); wrote Baburnama (autobiography)</td></tr>
+        <tr><td>Akbar</td><td>Mughal Empire</td><td>Sulh-i kul; abolished jizya; Rajput marriages; Abul Fazl = historian</td></tr>
+        <tr><td>Aurangzeb</td><td>Mughal Empire</td><td>Sunni Muslim; reimposed jizya; banned music; destroyed temples</td></tr>
+        <tr><td>Rani Durgavati</td><td>Gond Kingdom</td><td>Brave queen; died fighting Akbar's army rather than surrender</td></tr>
+        <tr><td>Lachit Borphukan</td><td>Ahom Kingdom</td><td>Defeated Mughals at Battle of Saraighat (1671)</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">📚 Key Terms &amp; Vocabulary</div>
+    <div class="card-body">
+      <table>
+        <tr><th>Term</th><th>Meaning</th></tr>
+        <tr><td>Medieval</td><td>"Between two ages" — Indian context: 11th–17th century</td></tr>
+        <tr><td>Jizya</td><td>Tax on non-Muslims; abolished by Akbar, reimposed by Aurangzeb</td></tr>
+        <tr><td>Sulh-i kul</td><td>"Peace with all" — Akbar's policy of religious tolerance</td></tr>
+        <tr><td>Jauhar</td><td>Mass self-immolation by Rajput women when kingdom fell to invaders</td></tr>
+        <tr><td>Token currency</td><td>Copper coins used instead of silver by Tughlaq — experiment failed</td></tr>
+        <tr><td>Iconoclasm</td><td>Destruction of religious imagery and sacred spaces (e.g., Qutub complex)</td></tr>
+        <tr><td>Baburnama</td><td>Babur's autobiography — reveals personal life, poetry, conquests</td></tr>
+        <tr><td>Razmnama</td><td>Persian translation of the Mahabharata (commissioned by Akbar)</td></tr>
+        <tr><td>Panch Mahal</td><td>Five-storey palace in Fatehpur Sikri built by Akbar</td></tr>
+        <tr><td>Amuktamalyada</td><td>Epic poem in Telugu by Krishnadevaraya; discusses rajaniti (royal policy)</td></tr>
+        <tr><td>Quwwat-ul-Islam</td><td>"Might of Islam" — mosque in Qutub Minar complex, Delhi</td></tr>
+        <tr><td>Rajya-Vyavahara-Kosha</td><td>Sanskrit-Kannada dictionary commissioned by Krishnadevaraya</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">💡 Exam Tips — Chapter 2</div>
+    <div class="card-body">
+      <div class="trick-box">🎯 Akbar vs Aurangzeb is a classic exam topic. Remember: Akbar = Inclusive (abolished jizya, married Rajputs, sulh-i kul). Aurangzeb = Exclusive (reimposed jizya, banned music, destroyed temples).</div>
+      <div class="trick-box">🎯 Qutub Minar — built by Qutub-ud-din Aibak, materials from <strong>27 temples</strong>. Name "Quwwat-ul-Islam" = "Might of Islam."</div>
+      <div class="trick-box">🎯 "Musical pillars" = Vitthala temple in Hampi (Vijayanagara). The monolithic pillars produce musical notes when struck.</div>
+      <div class="tip-box">📌 The Baburnama is important — it is Babur's AUTOBIOGRAPHY. The Razmnama is the Persian translation of the Mahabharata (NOT Babur's book).</div>
+      <div class="tip-box">📌 Vijayanagara = founded by Harihara and Bukka (1336); Hampi is capital; destroyed at Battle of Talikota (1565). The kingdom was a "center of art and trade" and attracted Portuguese traders.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">📝 Short Answer Practice — Ch 2</div>
+    <div class="card-body">
+      <div class="mcq-q">
+        <p>1. What was the sulh-i kul policy of Akbar? Why was it important?</p>
+        <textarea rows="3"></textarea>
+        <button class="btn-ans" onclick="toggleAns(this)">Show Answer</button>
+        <div class="ans-box">Sulh-i kul = "peace with all." Akbar introduced it to promote tolerance of all religions in his diverse empire. He abolished jizya (tax on non-Muslims), welcomed Rajput leaders into his court, and encouraged interfaith dialogue. It stabilized his empire by winning the support of diverse communities.</div>
+      </div>
+      <div class="mcq-q">
+        <p>2. Why did Muhammad bin Tughlaq shift his capital to Daulatabad?</p>
+        <textarea rows="3"></textarea>
+        <button class="btn-ans" onclick="toggleAns(this)">Show Answer</button>
+        <div class="ans-box">He believed Daulatabad's central location would allow better control over his expanding empire and reduce the threat of Mongol invasions in Delhi. However, the forced migration caused immense suffering to people and the plan failed. He was forced to shift the capital back to Delhi.</div>
+      </div>
+      <div class="mcq-q">
+        <p>3. How did the Mughals use marriage alliances? Give a specific example.</p>
+        <textarea rows="3"></textarea>
+        <button class="btn-ans" onclick="toggleAns(this)">Show Answer</button>
+        <div class="ans-box">Akbar used marriage alliances with Rajput princesses to politically integrate regional leaders into his court. By marrying into Rajput families, he secured the loyalty of powerful local dynasties and reduced resistance. This allowed Rajput chiefs to serve as generals in his army, strengthening Mughal power.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">📝 MCQ Practice — Medieval India (15 Questions)</div>
+    <div class="card-body">
+      <div class="mcq-q" id="h1"><p>1. Who founded the Vijayanagara Empire?</p>
+        <div class="opts">
+          <label><input type="radio" name="h1" value="a">(a) Ala-ud-din Khilji</label>
+          <label><input type="radio" name="h1" value="b">(b) Harihara and Bukka</label>
+          <label><input type="radio" name="h1" value="c">(c) Babur</label>
+          <label><input type="radio" name="h1" value="d">(d) Rana Kumbha</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="h2"><p>2. Which battle led to the establishment of the Mughal Empire?</p>
+        <div class="opts">
+          <label><input type="radio" name="h2" value="a">(a) Battle of Talikota</label>
+          <label><input type="radio" name="h2" value="b">(b) First Battle of Panipat</label>
+          <label><input type="radio" name="h2" value="c">(c) Battle of Haldighati</label>
+          <label><input type="radio" name="h2" value="d">(d) Battle of Saraighat</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="h3"><p>3. Jauhar was a practice associated with:</p>
+        <div class="opts">
+          <label><input type="radio" name="h3" value="a">(a) Sultans</label>
+          <label><input type="radio" name="h3" value="b">(b) Rajput women</label>
+          <label><input type="radio" name="h3" value="c">(c) Mughal nobles</label>
+          <label><input type="radio" name="h3" value="d">(d) Traders</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="h4"><p>4. Which Mughal emperor abolished the jizya?</p>
+        <div class="opts">
+          <label><input type="radio" name="h4" value="a">(a) Babur</label>
+          <label><input type="radio" name="h4" value="b">(b) Humayun</label>
+          <label><input type="radio" name="h4" value="c">(c) Akbar</label>
+          <label><input type="radio" name="h4" value="d">(d) Aurangzeb</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="h5"><p>5. The Baburnama is the autobiography of:</p>
+        <div class="opts">
+          <label><input type="radio" name="h5" value="a">(a) Abul Fazl</label>
+          <label><input type="radio" name="h5" value="b">(b) Babur</label>
+          <label><input type="radio" name="h5" value="c">(c) Dara Shikoh</label>
+          <label><input type="radio" name="h5" value="d">(d) Akbar</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="h6"><p>6. The Qutub Minar complex is located in:</p>
+        <div class="opts">
+          <label><input type="radio" name="h6" value="a">(a) Agra</label>
+          <label><input type="radio" name="h6" value="b">(b) Delhi</label>
+          <label><input type="radio" name="h6" value="c">(c) Fatehpur Sikri</label>
+          <label><input type="radio" name="h6" value="d">(d) Ajmer</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="h7"><p>7. Who defeated the Mughal army in the Battle of Saraighat (1671)?</p>
+        <div class="opts">
+          <label><input type="radio" name="h7" value="a">(a) Marathas</label>
+          <label><input type="radio" name="h7" value="b">(b) Ahoms</label>
+          <label><input type="radio" name="h7" value="c">(c) Rajputs</label>
+          <label><input type="radio" name="h7" value="d">(d) Jats</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="h8"><p>8. The Razmnama is the Persian translation of:</p>
+        <div class="opts">
+          <label><input type="radio" name="h8" value="a">(a) Ramayana</label>
+          <label><input type="radio" name="h8" value="b">(b) Mahabharata</label>
+          <label><input type="radio" name="h8" value="c">(c) Bhagavad Gita</label>
+          <label><input type="radio" name="h8" value="d">(d) Vedas</label>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:14px">
+        <button class="btn-check" onclick="checkH()">✅ Check Answers</button>
+        <button class="btn-reset" onclick="resetH()">🔄 Reset</button>
+      </div>
+      <div class="score-box" id="h-score"><h2 id="h-score-text"></h2><p id="h-score-msg"></p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CHAPTER 3: MARATHAS ===== -->
+<div id="ch3" class="chapter">
+
+  <div class="card">
+    <div class="card-head">📅 Maratha Timeline</div>
+    <div class="card-body">
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-date">1627</div><div class="tl-event">Shivaji Maharaj born</div></div>
+        <div class="tl-item"><div class="tl-date">1630</div><div class="tl-event">Traditional/alternate birth year of Chhatrapati Shivaji</div></div>
+        <div class="tl-item"><div class="tl-date">1657</div><div class="tl-event">Maratha navy founded — to control coastal trade and resist European navies</div></div>
+        <div class="tl-item"><div class="tl-date">1674</div><div class="tl-event">Coronation of Chhatrapati Shivaji at Raigad Fort — Maratha Empire officially born</div></div>
+        <div class="tl-item"><div class="tl-date">1680</div><div class="tl-event">Death of Chhatrapati Shivaji. Sambhaji (son) becomes next ruler</div></div>
+        <div class="tl-item"><div class="tl-date">1715</div><div class="tl-event">Adnyapatra written by Ramachandrapant Amatya — warns against European "hat-wearers"</div></div>
+        <div class="tl-item"><div class="tl-date">18th century</div><div class="tl-event">Marathas become the most powerful force in India; fill power vacuum left by declining Mughals</div></div>
+        <div class="tl-item"><div class="tl-date">1818</div><div class="tl-event">British defeat Marathas → solidify control over India</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">🏰 Key Facts — Maratha Empire</div>
+    <div class="card-body">
+      <div class="date-box">
+        📌 <strong>Raigad Fort</strong> = Primary symbol of Maratha sovereignty. Located in Sahyadri mountains. Site of Shivaji's 1674 coronation.<br>
+        📌 <strong>Forts = "Core of the state"</strong> — administrative centers, storehouses, military bases. Hard to conquer from mountains.<br>
+        📌 <strong>Adnyapatra (1715)</strong> by Ramachandrapant Amatya — warns against Portuguese, English, Dutch, French ("hat-wearers"). Says their trade should be controlled, don't allow fortified buildings.<br>
+        📌 <strong>Guerrilla warfare</strong> — mobility, surprise attacks, using rugged terrain of Sahyadri mountains. Marathas' biggest military advantage.
+      </div>
+      <table>
+        <tr><th>Aspect</th><th>Marathas</th><th>Mughal Empire</th></tr>
+        <tr><td>Governance structure</td><td>Decentralized — local forts + regional leaders</td><td>Centralized — absolute Emperor</td></tr>
+        <tr><td>Military strategy</td><td>Guerrilla warfare, forts, navy</td><td>Large standing armies, heavy artillery</td></tr>
+        <tr><td>Religious policy</td><td>Tolerant — respected all faiths and sites</td><td>Varied — Akbar tolerant; Aurangzeb strict</td></tr>
+        <tr><td>Navy</td><td>Founded 1657 — strong coastal defense</td><td>Weak navy</td></tr>
+        <tr><td>European awareness</td><td>Identified Europeans as colonial threat early</td><td>Underestimated European ambitions</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">📚 Key Terms — Marathas</div>
+    <div class="card-body">
+      <table>
+        <tr><th>Term</th><th>Meaning</th></tr>
+        <tr><td>Adnyapatra</td><td>Document by Ramachandrapant Amatya (1715) — advice on governance and dealing with Europeans</td></tr>
+        <tr><td>Hat-wearers</td><td>Term used in Adnyapatra to refer to European traders (Portuguese, English, Dutch, French)</td></tr>
+        <tr><td>Pan-Indian power</td><td>Maratha influence extended beyond Maharashtra to most of India</td></tr>
+        <tr><td>Guerrilla warfare</td><td>Hit-and-run tactics using speed, surprise, and terrain advantage</td></tr>
+        <tr><td>Raigad Fort</td><td>Symbol of Maratha sovereignty; in Sahyadri mountains; site of 1674 coronation</td></tr>
+        <tr><td>Peshwa</td><td>Prime minister of the Maratha Empire — became very powerful after Shivaji</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">💡 Exam Tips — Marathas</div>
+    <div class="card-body">
+      <div class="trick-box">🎯 Know all 4 key years: 1630 (birth), 1657 (navy), 1674 (coronation), 1680 (death), 1715 (Adnyapatra).</div>
+      <div class="trick-box">🎯 "Forts = core of state" — not just for war but also for governance, storage, and administration. This often appears in long questions.</div>
+      <div class="trick-box">🎯 The Adnyapatra question: Author = Ramachandrapant Amatya. Year = 1715. "Hat-wearers" = Europeans. Theme = control European trade and fort-building.</div>
+      <div class="tip-box">📌 British eventually took India from the Marathas — not the Mughals. This is a commonly asked MCQ!</div>
+      <div class="tip-box">📌 Shivaji's coronation was at <strong>Raigad</strong>, not Delhi. His birth is 1630. Death is 1680.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">📝 Short Answer Practice — Marathas</div>
+    <div class="card-body">
+      <div class="mcq-q">
+        <p>1. Why were forts considered the "core of the state" for the Marathas?</p>
+        <textarea rows="3"></textarea>
+        <button class="btn-ans" onclick="toggleAns(this)">Show Answer</button>
+        <div class="ans-box">Forts were the center of Maratha military, administrative, and economic life. They were strategically built on hilltops, making them nearly impossible to conquer. They served as storehouses for food and weapons, allowing long campaigns. Forts also allowed the Marathas to retreat and regroup after battles against larger armies, effectively neutralizing the Mughals' numerical advantage.</div>
+      </div>
+      <div class="mcq-q">
+        <p>2. What was the significance of the Adnyapatra? Who wrote it and when?</p>
+        <textarea rows="3"></textarea>
+        <button class="btn-ans" onclick="toggleAns(this)">Show Answer</button>
+        <div class="ans-box">The Adnyapatra was written by Ramachandrapant Amatya in 1715. It is a political document providing advice on governance and defense. It warned against the European "hat-wearers" (Portuguese, English, Dutch, French), identifying them as more than traders — they had territorial and religious ambitions. The document advised strictly controlling European trade and forbidding them from building fortified buildings. It shows the Marathas had early, clear strategic thinking about colonialism.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">📝 MCQ Practice — Marathas (10 Questions)</div>
+    <div class="card-body">
+      <div class="mcq-q" id="mr1"><p>1. Who wrote the Adnyapatra?</p>
+        <div class="opts">
+          <label><input type="radio" name="mr1" value="a">(a) Shivaji Maharaj</label>
+          <label><input type="radio" name="mr1" value="b">(b) Ramachandrapant Amatya</label>
+          <label><input type="radio" name="mr1" value="c">(c) Peshwa Baji Rao</label>
+          <label><input type="radio" name="mr1" value="d">(d) Sambhaji</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="mr2"><p>2. In which year was Chhatrapati Shivaji crowned?</p>
+        <div class="opts">
+          <label><input type="radio" name="mr2" value="a">(a) 1630</label>
+          <label><input type="radio" name="mr2" value="b">(b) 1657</label>
+          <label><input type="radio" name="mr2" value="c">(c) 1674</label>
+          <label><input type="radio" name="mr2" value="d">(d) 1680</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="mr3"><p>3. The Maratha navy was founded in:</p>
+        <div class="opts">
+          <label><input type="radio" name="mr3" value="a">(a) 1630</label>
+          <label><input type="radio" name="mr3" value="b">(b) 1657</label>
+          <label><input type="radio" name="mr3" value="c">(c) 1674</label>
+          <label><input type="radio" name="mr3" value="d">(d) 1715</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="mr4"><p>4. The term "hat-wearers" in the Adnyapatra refers to:</p>
+        <div class="opts">
+          <label><input type="radio" name="mr4" value="a">(a) Mughals</label>
+          <label><input type="radio" name="mr4" value="b">(b) European traders</label>
+          <label><input type="radio" name="mr4" value="c">(c) Maratha soldiers</label>
+          <label><input type="radio" name="mr4" value="d">(d) Farmers</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="mr5"><p>5. The British took India from:</p>
+        <div class="opts">
+          <label><input type="radio" name="mr5" value="a">(a) Mughals</label>
+          <label><input type="radio" name="mr5" value="b">(b) Marathas</label>
+          <label><input type="radio" name="mr5" value="c">(c) French</label>
+          <label><input type="radio" name="mr5" value="d">(d) Dutch</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="mr6"><p>6. The rise of the Marathas led to the decline of:</p>
+        <div class="opts">
+          <label><input type="radio" name="mr6" value="a">(a) Vijayanagara Empire</label>
+          <label><input type="radio" name="mr6" value="b">(b) Mughal Empire</label>
+          <label><input type="radio" name="mr6" value="c">(c) Chola Empire</label>
+          <label><input type="radio" name="mr6" value="d">(d) Gupta Empire</label>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:14px">
+        <button class="btn-check" onclick="checkMR()">✅ Check Answers</button>
+        <button class="btn-reset" onclick="resetMR()">🔄 Reset</button>
+      </div>
+      <div class="score-box" id="mr-score"><h2 id="mr-score-text"></h2><p id="mr-score-msg"></p></div>
+    </div>
+  </div>
+</div>
+
+<script>
+function showCh(id,btn){
+  document.querySelectorAll('.chapter').forEach(c=>c.classList.remove('active'));
+  document.querySelectorAll('.ch-nav button').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+function toggleAns(btn){
+  const b=btn.nextElementSibling;
+  b.style.display=b.style.display==='block'?'none':'block';
+  btn.textContent=b.style.display==='block'?'Hide Answer':'Show Answer';
+}
+function checkQ(ans,ids,scoreId,stId,smId){
+  let score=0;
+  ids.forEach(q=>{
+    const sel=document.querySelector(`input[name="${q}"]:checked`);
+    const div=document.getElementById(q);
+    div.querySelectorAll('label').forEach(l=>l.classList.remove('correct-fl','wrong-fl'));
+    const cor=ans[q];
+    if(sel){
+      if(sel.value===cor){score++;sel.closest('label').classList.add('correct-fl');}
+      else{sel.closest('label').classList.add('wrong-fl');div.querySelector(`input[value="${cor}"]`).closest('label').classList.add('correct-fl');}
+    } else {div.querySelector(`input[value="${cor}"]`).closest('label').classList.add('correct-fl');}
+  });
+  document.getElementById(scoreId).style.display='block';
+  const pct=Math.round(score/ids.length*100);
+  document.getElementById(stId).textContent=score+'/'+ids.length+' ('+pct+'%)';
+  document.getElementById(smId).textContent=pct>=80?'🌟 Excellent!':pct>=60?'👍 Good!':'📚 Review the chapter again!';
+}
+function resetQ(ids,scoreId){
+  ids.forEach(q=>document.querySelectorAll(`input[name="${q}"]`).forEach(r=>r.checked=false));
+  document.querySelectorAll('label').forEach(l=>l.classList.remove('correct-fl','wrong-fl'));
+  document.getElementById(scoreId).style.display='none';
+}
+const hAns={h1:'b',h2:'b',h3:'b',h4:'c',h5:'b',h6:'b',h7:'b',h8:'b'};
+function checkH(){checkQ(hAns,['h1','h2','h3','h4','h5','h6','h7','h8'],'h-score','h-score-text','h-score-msg');}
+function resetH(){resetQ(['h1','h2','h3','h4','h5','h6','h7','h8'],'h-score');}
+const mrAns={mr1:'b',mr2:'c',mr3:'b',mr4:'b',mr5:'b',mr6:'b'};
+function checkMR(){checkQ(mrAns,['mr1','mr2','mr3','mr4','mr5','mr6'],'mr-score','mr-score-text','mr-score-msg');}
+function resetMR(){resetQ(['mr1','mr2','mr3','mr4','mr5','mr6'],'mr-score');}
+</script>
+</body>
+</html>

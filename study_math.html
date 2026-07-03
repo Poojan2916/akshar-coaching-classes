@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Math Study Guide – Linear Equations | Class VIII</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',sans-serif;background:#f0f4ff;color:#222}
+.cover{background:linear-gradient(135deg,#1a237e,#283593);color:#fff;padding:36px 40px;text-align:center}
+.cover h1{font-size:2rem}.cover h2{font-size:1rem;opacity:.85;margin-top:6px}
+.badges{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:18px}
+.badge{background:rgba(255,255,255,.15);padding:7px 16px;border-radius:20px;font-size:.82rem}
+.nav{display:flex;flex-wrap:wrap;gap:8px;padding:16px 20px;background:#fff;border-bottom:2px solid #e0e6ff;position:sticky;top:0;z-index:100;box-shadow:0 2px 6px rgba(0,0,0,.08)}
+.nav button{padding:8px 18px;border:2px solid #1a237e;border-radius:20px;background:#fff;color:#1a237e;font-weight:600;cursor:pointer;font-size:.88rem;transition:.2s}
+.nav button.active,.nav button:hover{background:#1a237e;color:#fff}
+.section{display:none;max-width:920px;margin:0 auto;padding:24px 20px 48px}
+.section.active{display:block}
+.card{background:#fff;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,.09);margin:18px 0;overflow:hidden}
+.card-head{background:#1a237e;color:#fff;padding:12px 20px;font-size:1rem;font-weight:700;display:flex;justify-content:space-between;align-items:center}
+.card-body{padding:18px 20px}
+.formula-box{background:#e8eaf6;border-left:5px solid #3949ab;border-radius:6px;padding:14px 18px;margin:10px 0;font-family:monospace;font-size:1rem;line-height:1.8}
+.tip-box{background:#e8f5e9;border-left:5px solid #388e3c;border-radius:6px;padding:12px 16px;margin:10px 0;font-size:.93rem;line-height:1.7}
+.warn-box{background:#fff3e0;border-left:5px solid #f57c00;border-radius:6px;padding:12px 16px;margin:10px 0;font-size:.93rem;line-height:1.7}
+.trick-box{background:#fce4ec;border-left:5px solid #c2185b;border-radius:6px;padding:12px 16px;margin:10px 0;font-size:.93rem;line-height:1.7}
+.step{display:flex;gap:12px;margin:8px 0;align-items:flex-start}
+.step-num{background:#1a237e;color:#fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;flex-shrink:0;margin-top:2px}
+.step p{line-height:1.6;font-size:.93rem}
+table{width:100%;border-collapse:collapse;margin:10px 0}
+th{background:#1a237e;color:#fff;padding:10px 12px;text-align:left;font-size:.88rem}
+td{padding:9px 12px;border-bottom:1px solid #e0e0e0;font-size:.9rem}
+tr:nth-child(even) td{background:#f5f6ff}
+.mcq-q{background:#fafafa;border-radius:8px;padding:14px;margin:14px 0;border-left:4px solid #3949ab}
+.mcq-q p{font-weight:600;margin-bottom:10px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.opts label{padding:8px 12px;border:1.5px solid #ccc;border-radius:6px;cursor:pointer;font-size:.9rem;display:flex;align-items:center;gap:8px;transition:.2s}
+.opts label:hover{border-color:#3949ab;background:#e8eaf6}
+input[type=radio]{accent-color:#1a237e}
+.answer-reveal{background:#e8eaf6;border:1.5px solid #9fa8da;border-radius:6px;padding:10px 14px;margin-top:8px;display:none;font-size:.9rem}
+.btn-reveal{background:#3949ab;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:.85rem;margin-top:8px}
+.btn-check{background:#1a237e;color:#fff;border:none;padding:12px 28px;border-radius:8px;cursor:pointer;font-size:1rem;font-weight:700;display:block;margin:16px auto}
+.btn-reset{background:#e53935;color:#fff;border:none;padding:12px 28px;border-radius:8px;cursor:pointer;font-size:1rem;font-weight:700;margin-left:12px}
+.score-box{display:none;background:linear-gradient(135deg,#1a237e,#283593);color:#fff;border-radius:10px;padding:22px;text-align:center;margin:16px 0}
+.correct-fl{background:#e8f5e9!important;border-color:#43a047!important}
+.wrong-fl{background:#ffebee!important;border-color:#e53935!important}
+.prob-block{background:#f5f6ff;border-radius:8px;border-left:4px solid #1a237e;padding:14px 16px;margin:12px 0}
+.prob-block .prob-q{font-weight:600;margin-bottom:8px}
+.prob-step{margin:6px 0;font-size:.9rem;color:#333;line-height:1.6}
+textarea{width:100%;border:1.5px solid #bbb;border-radius:6px;padding:10px;font-family:inherit;font-size:.93rem;margin-top:8px;resize:vertical}
+textarea:focus{outline:none;border-color:#1a237e}
+.ans-box{background:#e8eaf6;border:1.5px solid #9fa8da;border-radius:6px;padding:12px 16px;margin-top:8px;display:none;font-size:.9rem;line-height:1.7}
+.btn-ans{background:#3949ab;color:#fff;border:none;padding:7px 14px;border-radius:6px;cursor:pointer;font-size:.84rem;margin-top:8px}
+.tag{display:inline-block;padding:2px 10px;border-radius:12px;font-size:.75rem;font-weight:700;margin-bottom:6px}
+.tag-hard{background:#ffcdd2;color:#c62828}
+.tag-med{background:#fff9c4;color:#f57f17}
+.tag-easy{background:#c8e6c9;color:#2e7d32}
+.checklist li{list-style:none;padding:6px 0;font-size:.93rem;display:flex;align-items:center;gap:10px;border-bottom:1px solid #eee}
+.checklist li::before{content:"☐";font-size:1.1rem;color:#1a237e}
+@media(max-width:600px){.opts{grid-template-columns:1fr}}
+
+  /* ── ACC NAV BAR ── */
+  .acc-topbar{display:flex;align-items:center;justify-content:space-between;background:linear-gradient(135deg,#0d1b4b,#1a2e7a);padding:10px 24px;position:sticky;top:0;z-index:999;box-shadow:0 2px 12px rgba(0,0,0,.3)}
+  .acc-topbar-left{display:flex;align-items:center;gap:12px}
+  .acc-topbar img{width:42px;height:42px;border-radius:50%;border:2px solid rgba(255,255,255,.3)}
+  .acc-topbar-name{color:#fff;font-weight:800;font-size:.92rem;line-height:1.1}
+  .acc-topbar-name span{display:block;font-size:.7rem;color:rgba(255,255,255,.6);font-weight:400}
+  .acc-home-btn{background:rgba(255,255,255,.15);color:#fff;border:1.5px solid rgba(255,255,255,.3);padding:7px 16px;border-radius:20px;font-size:.8rem;font-weight:700;text-decoration:none;transition:.2s;white-space:nowrap}
+  .acc-home-btn:hover{background:rgba(255,255,255,.25);color:#fbbf24}
+
+</style>
+</head>
+<body>
+<div class="cover">
+  <div style="font-size:.8rem;opacity:.7;margin-bottom:6px">AKSHAR COACHING CLASSES · CLASS VIII</div>
+  <h1>📐 Mathematics Study Guide</h1>
+  <h2>Linear Equations in One Variable — Complete Revision Package</h2>
+  <div class="badges">
+    <span class="badge">📖 Chapter Summary</span>
+    <span class="badge">🔢 Formula Sheet</span>
+    <span class="badge">💡 Tips & Tricks</span>
+    <span class="badge">📝 Practice MCQs</span>
+    <span class="badge">📋 Word Problems</span>
+    <span class="badge">✅ Checklist</span>
+  </div>
+</div>
+
+<div class="nav">
+  <button class="active" onclick="show('summary')">📖 Summary</button>
+  <button onclick="show('formulas')">🔢 Formulas</button>
+  <button onclick="show('tips')">💡 Tips & Tricks</button>
+  <button onclick="show('mcq')">📝 MCQ Practice</button>
+  <button onclick="show('wordprob')">🧩 Word Problems</button>
+  <button onclick="show('checklist')">✅ Checklist</button>
+</div>
+
+<!-- ===== SUMMARY ===== -->
+<div id="summary" class="section active">
+  <div class="card">
+    <div class="card-head">📖 What is a Linear Equation in One Variable?</div>
+    <div class="card-body">
+      <p>A <strong>linear equation in one variable</strong> is an equation of the form <strong>ax + b = 0</strong>, where:</p>
+      <ul style="padding-left:20px;margin:10px 0;line-height:2">
+        <li><strong>a</strong> and <strong>b</strong> are real numbers, <strong>a ≠ 0</strong></li>
+        <li><strong>x</strong> is the unknown variable</li>
+        <li>It always has exactly <strong>one unique solution</strong></li>
+        <li>The solution is the value of x that makes LHS = RHS</li>
+      </ul>
+      <div class="tip-box">✅ <strong>Key Fact:</strong> "Linear" means the highest power of the variable is <strong>1</strong>. So x² makes it quadratic, not linear.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">🔄 The Golden Rules of Solving</div>
+    <div class="card-body">
+      <p style="margin-bottom:12px">Whatever you do to one side, do the <strong>same to the other side</strong>.</p>
+      <table>
+        <tr><th>Operation</th><th>Rule</th><th>Example</th></tr>
+        <tr><td>Add/Subtract</td><td>Add/subtract same number from both sides</td><td>x − 3 = 7 → x = 7 + 3 = 10</td></tr>
+        <tr><td>Multiply/Divide</td><td>Multiply/divide both sides by same non-zero number</td><td>x/4 = 5 → x = 20</td></tr>
+        <tr><td>Transpose</td><td>Move term to other side, flip sign (+ → −, × → ÷)</td><td>2x + 5 = 11 → 2x = 11 − 5 = 6</td></tr>
+        <tr><td>Cross-multiply</td><td>For a/b = c/d → a × d = b × c</td><td>(x+1)/(2x+3) = 3/8 → 8(x+1) = 3(2x+3)</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">📋 Step-by-Step Method to Solve Any Equation</div>
+    <div class="card-body">
+      <div class="step"><div class="step-num">1</div><p><strong>Clear fractions:</strong> Find the LCM of all denominators and multiply both sides by it.</p></div>
+      <div class="step"><div class="step-num">2</div><p><strong>Expand brackets:</strong> Use distributive property: a(b + c) = ab + ac</p></div>
+      <div class="step"><div class="step-num">3</div><p><strong>Collect variables:</strong> Move all x terms to the LEFT side.</p></div>
+      <div class="step"><div class="step-num">4</div><p><strong>Collect constants:</strong> Move all numbers to the RIGHT side (flip signs when crossing = ).</p></div>
+      <div class="step"><div class="step-num">5</div><p><strong>Divide:</strong> Divide both sides by the coefficient of x to get x = answer.</p></div>
+      <div class="step"><div class="step-num">6</div><p><strong>Verify:</strong> Substitute back into the ORIGINAL equation — LHS must equal RHS.</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">🧩 Types of Word Problems</div>
+    <div class="card-body">
+      <table>
+        <tr><th>Problem Type</th><th>How to Set Up</th><th>Key Example</th></tr>
+        <tr><td><strong>Age Problems</strong></td><td>Let present age = x. Write the other person's age in terms of x. Set up equation for future/past condition.</td><td>Father-daughter: Daughter = x, Father = x + 30</td></tr>
+        <tr><td><strong>Digit Problems</strong></td><td>Tens digit = x, units digit = (known value − x). Original number = 10×tens + units.</td><td>Sum of digits = 9: Original = 9x + 9</td></tr>
+        <tr><td><strong>Ratio Problems</strong></td><td>Let the common factor = x. Ages = (ratio1)x and (ratio2)x. Apply past/future condition.</td><td>Ratio 3:4 → ages = 3x, 4x</td></tr>
+        <tr><td><strong>Number Problems</strong></td><td>Let smaller number = x. Express the other in terms of x.</td><td>Sum = 95, differ by 15 → x + (x+15) = 95</td></tr>
+        <tr><td><strong>Fraction Problems</strong></td><td>Let numerator = x, denominator = x + (given diff). Apply condition given.</td><td>Denominator greater by 8: fraction = x/(x+8)</td></tr>
+        <tr><td><strong>Mixture/Money</strong></td><td>Use given ratios to express all quantities in terms of one variable.</td><td>Rs 10 notes = 2.5 × Rs 20 notes</td></tr>
+        <tr><td><strong>Speed Problems</strong></td><td>Distance = Speed × Time. Set up equation using same distance for both directions.</td><td>Downstream + upstream → same distance</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">🔍 Worked Examples (Fully Solved)</div>
+    <div class="card-body">
+      <div class="prob-block">
+        <div class="prob-q">Example 1: Solve 2x/3 + 1 = 7x/15 + 3</div>
+        <div class="prob-step">LCM of 3 and 15 = 15. Multiply throughout by 15:</div>
+        <div class="prob-step">→ 10x + 15 = 7x + 45</div>
+        <div class="prob-step">→ 10x − 7x = 45 − 15 → 3x = 30 → <strong>x = 10</strong></div>
+      </div>
+      <div class="prob-block">
+        <div class="prob-q">Example 2: A father is 30 years older than his daughter. After 5 years he will be 3× her age.</div>
+        <div class="prob-step">Let daughter's present age = x. Father's age = x + 30.</div>
+        <div class="prob-step">After 5 years: x + 35 = 3(x + 5)</div>
+        <div class="prob-step">→ x + 35 = 3x + 15 → 20 = 2x → <strong>x = 10</strong> (Daughter = 10, Father = 40)</div>
+      </div>
+      <div class="prob-block">
+        <div class="prob-q">Example 3: 2-digit number. Sum of digits = 9. Reversed number exceeds original by 45.</div>
+        <div class="prob-step">Let tens digit = x. Units = 9 − x. Original = 9x + 9. Reversed = 90 − 9x.</div>
+        <div class="prob-step">→ (90 − 9x) − (9x + 9) = 45 → 81 − 18x = 45 → 18x = 36 → x = 2</div>
+        <div class="prob-step">→ <strong>Number = 27</strong></div>
+      </div>
+      <div class="prob-block">
+        <div class="prob-q">Example 4: Ages in ratio 3:4. Six years ago ratio was 7:10. Find present ages.</div>
+        <div class="prob-step">Let present ages = 3x and 4x.</div>
+        <div class="prob-step">Six years ago: (3x − 6)/(4x − 6) = 7/10</div>
+        <div class="prob-step">→ 10(3x − 6) = 7(4x − 6) → 30x − 60 = 28x − 42 → 2x = 18 → x = 9</div>
+        <div class="prob-step">→ <strong>Ages = 27 and 36</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FORMULAS ===== -->
+<div id="formulas" class="section">
+  <div class="card">
+    <div class="card-head">🔢 Essential Formula Sheet</div>
+    <div class="card-body">
+      <div class="formula-box">
+        <strong>Standard Form:</strong> ax + b = c  →  x = (c − b) / a
+      </div>
+      <div class="formula-box">
+        <strong>Cross-multiplication:</strong> a/b = c/d  →  ad = bc
+      </div>
+      <div class="formula-box">
+        <strong>Clearing Fractions:</strong> Multiply both sides by LCM of all denominators
+      </div>
+      <div class="formula-box">
+        <strong>Distributive Law:</strong> a(b ± c) = ab ± ac
+      </div>
+      <div class="formula-box">
+        <strong>Transposition:</strong> ax + b = c  →  ax = c − b  →  x = (c−b)/a
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">📊 2-Digit Number Formulae</div>
+    <div class="card-body">
+      <div class="formula-box">
+        If tens digit = x, units digit = y:<br>
+        Original number = <strong>10x + y</strong><br>
+        Reversed number = <strong>10y + x</strong><br>
+        Sum of digits = x + y<br>
+        Difference (original − reversed) = <strong>9(x − y)</strong><br>
+        Sum (original + reversed) = <strong>11(x + y)</strong>
+      </div>
+      <div class="tip-box">💡 If digits sum to S and tens > units by D: tens = (S+D)/2, units = (S−D)/2</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">⏱️ Age Problem Formulae</div>
+    <div class="card-body">
+      <div class="formula-box">
+        Present age = x<br>
+        Age n years LATER = x + n<br>
+        Age n years BEFORE = x − n<br><br>
+        If A is k times older than B now: A = kB<br>
+        If after n years A will be k times B: (A+n) = k(B+n)
+      </div>
+      <div class="formula-box">
+        Ratio problem: If ages are in ratio p:q → let ages = px and qx<br>
+        Apply past/future condition and solve for x.
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">🚤 Distance–Speed–Time</div>
+    <div class="card-body">
+      <div class="formula-box">
+        Distance = Speed × Time<br>
+        Speed = Distance / Time<br>
+        Time = Distance / Speed<br><br>
+        Downstream speed = boat speed + stream speed<br>
+        Upstream speed = boat speed − stream speed<br><br>
+        If same distance: Time₁ × Speed₁ = Time₂ × Speed₂
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">🔑 Key Vocabulary</div>
+    <div class="card-body">
+      <table>
+        <tr><th>Term</th><th>Meaning</th></tr>
+        <tr><td>Linear Equation</td><td>Equation where highest power of variable = 1</td></tr>
+        <tr><td>Variable</td><td>Unknown quantity (usually x, y, t)</td></tr>
+        <tr><td>Coefficient</td><td>Number multiplied by variable (in 3x, coefficient = 3)</td></tr>
+        <tr><td>Constant</td><td>Number without variable (in 3x + 5, constant = 5)</td></tr>
+        <tr><td>Transposition</td><td>Moving a term from one side to another (sign changes)</td></tr>
+        <tr><td>Solution/Root</td><td>Value of x that satisfies the equation</td></tr>
+        <tr><td>Identity</td><td>Equation true for ALL values of x (e.g., 3(x−1) = 3x − 3)</td></tr>
+        <tr><td>LCM</td><td>Least Common Multiple — used to clear fractions</td></tr>
+        <tr><td>Verification</td><td>Substituting found value into original equation to check</td></tr>
+        <tr><td>RHS / LHS</td><td>Right-hand side / Left-hand side of an equation</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TIPS ===== -->
+<div id="tips" class="section">
+  <div class="card">
+    <div class="card-head">💡 Exam Tricks & Smart Strategies</div>
+    <div class="card-body">
+      <div class="trick-box">🎯 <strong>Trick 1 — LCM shortcut:</strong> When you see fractions like x/2 + x/3, find LCM (=6) and multiply both sides. All denominators vanish instantly.</div>
+      <div class="trick-box">🎯 <strong>Trick 2 — Cross-multiply when one fraction = one fraction:</strong> If the equation is a/b = c/d, immediately cross multiply. Don't find LCM.</div>
+      <div class="trick-box">🎯 <strong>Trick 3 — Digit problem shortcut:</strong> Original + Reversed = 11(sum of digits). Original − Reversed = 9(difference of digits). Use these to set equations fast.</div>
+      <div class="trick-box">🎯 <strong>Trick 4 — Always verify!</strong> In exams, the last step "Check: LHS = RHS" gets you marks even if you made a small calculation error.</div>
+      <div class="trick-box">🎯 <strong>Trick 5 — Word problem shortcut:</strong> Read the LAST line of the question first — it tells you what the equation should equal.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">⚠️ Common Mistakes to AVOID</div>
+    <div class="card-body">
+      <div class="warn-box">❌ <strong>Mistake 1:</strong> Forgetting to change sign when transposing. If +3 crosses = it becomes −3. Always flip the sign!</div>
+      <div class="warn-box">❌ <strong>Mistake 2:</strong> Not multiplying ALL terms by the LCM. Every single term on both sides must be multiplied.</div>
+      <div class="warn-box">❌ <strong>Mistake 3:</strong> In age problems — forgetting to add the same years to BOTH people. If "after 5 years", both ages increase by 5.</div>
+      <div class="warn-box">❌ <strong>Mistake 4:</strong> Confused about "exceeds by" vs "is half of." Read carefully: "A exceeds B by 5" means A = B + 5, NOT B = A + 5.</div>
+      <div class="warn-box">❌ <strong>Mistake 5:</strong> In digit problems — the "original number" is 10×(tens digit) + units digit. Don't just add the digits.</div>
+      <div class="warn-box">❌ <strong>Mistake 6:</strong> Skipping verification. Even a simple "LHS = 7 = RHS ✓" at the end earns marks.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">📊 Quick Assertion–Reason Guide</div>
+    <div class="card-body">
+      <table>
+        <tr><th>Answer</th><th>When to choose</th></tr>
+        <tr><td>(a)</td><td>BOTH Assertion and Reason are TRUE, and Reason EXPLAINS Assertion</td></tr>
+        <tr><td>(b)</td><td>BOTH are TRUE, but Reason does NOT explain Assertion</td></tr>
+        <tr><td>(c)</td><td>Assertion is TRUE, Reason is FALSE</td></tr>
+        <tr><td>(d)</td><td>Assertion is FALSE, Reason is TRUE</td></tr>
+      </table>
+      <div class="tip-box">💡 Always evaluate each statement independently first, then check if R explains A.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">⏰ Time Management in Exams</div>
+    <div class="card-body">
+      <table>
+        <tr><th>Section</th><th>Marks</th><th>Time</th><th>Strategy</th></tr>
+        <tr><td>MCQs</td><td>15</td><td>12 min</td><td>Skip if unsure, come back</td></tr>
+        <tr><td>Short Answer</td><td>30</td><td>25 min</td><td>Show all steps, write neatly</td></tr>
+        <tr><td>Long Answer</td><td>50</td><td>40 min</td><td>Define variable → equation → solve → verify</td></tr>
+        <tr><td>Revision</td><td>—</td><td>8 min</td><td>Check signs, verify 2–3 answers</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MCQ PRACTICE ===== -->
+<div id="mcq" class="section">
+  <div class="card">
+    <div class="card-head">📝 MCQ Practice Bank (20 Questions)</div>
+    <div class="card-body">
+
+      <div class="mcq-q" id="mq1">
+        <span class="tag tag-easy">Easy</span>
+        <p>1. The solution of 3x = 2x + 18 is:</p>
+        <div class="opts">
+          <label><input type="radio" name="mq1" value="a"> (a) 3</label>
+          <label><input type="radio" name="mq1" value="b"> (b) 6</label>
+          <label><input type="radio" name="mq1" value="c"> (c) 18</label>
+          <label><input type="radio" name="mq1" value="d"> (d) 9</label>
+        </div>
+      </div>
+
+      <div class="mcq-q" id="mq2">
+        <span class="tag tag-easy">Easy</span>
+        <p>2. If 9x − 5 = 22, then x is:</p>
+        <div class="opts">
+          <label><input type="radio" name="mq2" value="a"> (a) 2</label>
+          <label><input type="radio" name="mq2" value="b"> (b) 3</label>
+          <label><input type="radio" name="mq2" value="c"> (c) 17</label>
+          <label><input type="radio" name="mq2" value="d"> (d) 27</label>
+        </div>
+      </div>
+
+      <div class="mcq-q" id="mq3">
+        <span class="tag tag-easy">Easy</span>
+        <p>3. If 7x − 4 = 3x + 12, then x is:</p>
+        <div class="opts">
+          <label><input type="radio" name="mq3" value="a"> (a) 2</label>
+          <label><input type="radio" name="mq3" value="b"> (b) 4</label>
+          <label><input type="radio" name="mq3" value="c"> (c) 8</label>
+          <label><input type="radio" name="mq3" value="d"> (d) 16</label>
+        </div>
+      </div>
+
+      <div class="mcq-q" id="mq4">
+        <span class="tag tag-med">Medium</span>
+        <p>4. If 2x/3 + 1 = 7x/15 + 3, then x equals:</p>
+        <div class="opts">
+          <label><input type="radio" name="mq4" value="a"> (a) 5</label>
+          <label><input type="radio" name="mq4" value="b"> (b) 10</label>
+          <label><input type="radio" name="mq4" value="c"> (c) 15</label>
+          <label><input type="radio" name="mq4" value="d"> (d) 20</label>
+        </div>
+      </div>
+
+      <div class="mcq-q" id="mq5">
+        <span class="tag tag-med">Medium</span>
+        <p>5. Equation x/4 + x/6 = x − 7 has solution:</p>
+        <div class="opts">
+          <label><input type="radio" name="mq5" value="a"> (a) 10</label>
+          <label><input type="radio" name="mq5" value="b"> (b) 12</label>
+          <label><input type="radio" name="mq5" value="c"> (c) 14</label>
+          <label><input type="radio" name="mq5" value="d"> (d) 16</label>
+        </div>
+      </div>
+
+      <div class="mcq-q" id="mq6">
+        <span class="tag tag-med">Medium</span>
+        <p>6. If 2x − 3(x + 2) = 5(x − 3), then x is:</p>
+        <div class="opts">
+          <label><input type="radio" name="mq6" value="a"> (a) 9/4</label>
+          <label><input type="radio" name="mq6" value="b"> (b) 3/2</label>
+          <label><input type="radio" name="mq6" value="c"> (c) 9/8</label>
+          <label><input type="radio" name="mq6" value="d"> (d) 4/9</label>
+        </div>
+      </div>
+
+      <div class="mcq-q" id="mq7">
+        <span class="tag tag-med">Medium</span>
+        <p>7. The solution of (6x+1)/3 + 1 = (x−3)/6 is:</p>
+        <div class="opts">
+          <label><input type="radio" name="mq7" value="a"> (a) −1</label>
+          <label><input type="radio" name="mq7" value="b"> (b) −2</label>
+          <label><input type="radio" name="mq7" value="c"> (c) 1</label>
+          <label><input type="radio" name="mq7" value="d"> (d) 2</label>
+        </div>
+      </div>
+
+      <div class="mcq-q" id="mq8">
+        <span class="tag tag-hard">Hard</span>
+        <p>8. If (3t−2)/4 − (2t+3)/3 = t − 2/3, then t is:</p>
+        <div class="opts">
+          <label><input type="radio" name="mq8" value="a"> (a) 10</label>
+          <label><input type="radio" name="mq8" value="b"> (b) 12</label>
+          <label><input type="radio" name="mq8" value="c"> (c) −10</label>
+          <label><input type="radio" name="mq8" value="d"> (d) −12</label>
+        </div>
+      </div>
+
+      <div class="mcq-q" id="mq9">
+        <span class="tag tag-med">Medium</span>
+        <p>9. Solution of (3x+2)/(2x−1) = 1/2 is:</p>
+        <div class="opts">
+          <label><input type="radio" name="mq9" value="a"> (a) −1</label>
+          <label><input type="radio" name="mq9" value="b"> (b) −3/4</label>
+          <label><input type="radio" name="mq9" value="c"> (c) −5/4</label>
+          <label><input type="radio" name="mq9" value="d"> (d) 1</label>
+        </div>
+      </div>
+
+      <div class="mcq-q" id="mq10">
+        <span class="tag tag-hard">Hard</span>
+        <p>10. A man is 4 times as old as his son. After 20 years he will be twice as old. Son's present age:</p>
+        <div class="opts">
+          <label><input type="radio" name="mq10" value="a"> (a) 5</label>
+          <label><input type="radio" name="mq10" value="b"> (b) 10</label>
+          <label><input type="radio" name="mq10" value="c"> (c) 15</label>
+          <label><input type="radio" name="mq10" value="d"> (d) 20</label>
+        </div>
+      </div>
+
+      <div class="mcq-q" id="mq11">
+        <span class="tag tag-med">Medium</span>
+        <p>11. Three consecutive integers add up to 51. The smallest integer is:</p>
+        <div class="opts">
+          <label><input type="radio" name="mq11" value="a"> (a) 15</label>
+          <label><input type="radio" name="mq11" value="b"> (b) 16</label>
+          <label><input type="radio" name="mq11" value="c"> (c) 17</label>
+          <label><input type="radio" name="mq11" value="d"> (d) 18</label>
+        </div>
+      </div>
+
+      <div class="mcq-q" id="mq12">
+        <span class="tag tag-easy">Easy</span>
+        <p>12. The sum of two numbers is 95. One exceeds the other by 15. The smaller number is:</p>
+        <div class="opts">
+          <label><input type="radio" name="mq12" value="a"> (a) 35</label>
+          <label><input type="radio" name="mq12" value="b"> (b) 40</label>
+          <label><input type="radio" name="mq12" value="c"> (c) 45</label>
+          <label><input type="radio" name="mq12" value="d"> (d) 55</label>
+        </div>
+      </div>
+
+      <div class="mcq-q" id="mq13">
+        <span class="tag tag-hard">Hard</span>
+        <p>13. A boat covers a distance downstream in 4 hours and upstream in 5 hours. Stream speed is 2 km/h. Boat speed in still water:</p>
+        <div class="opts">
+          <label><input type="radio" name="mq13" value="a"> (a) 14</label>
+          <label><input type="radio" name="mq13" value="b"> (b) 16</label>
+          <label><input type="radio" name="mq13" value="c"> (c) 18</label>
+          <label><input type="radio" name="mq13" value="d"> (d) 20</label>
+        </div>
+      </div>
+
+      <div class="mcq-q" id="mq14">
+        <span class="tag tag-hard">Hard</span>
+        <p>14. A 2-digit number has digits summing to 8. If 18 is added, digits reverse. The number is:</p>
+        <div class="opts">
+          <label><input type="radio" name="mq14" value="a"> (a) 26</label>
+          <label><input type="radio" name="mq14" value="b"> (b) 35</label>
+          <label><input type="radio" name="mq14" value="c"> (c) 44</label>
+          <label><input type="radio" name="mq14" value="d"> (d) 17</label>
+        </div>
+      </div>
+
+      <div class="mcq-q" id="mq15">
+        <span class="tag tag-med">Medium</span>
+        <p>15. Assertion: The equation 4x + 5 = 4x + 3 has no solution. Reason: Subtracting 4x leads to 5 = 3, which is false.</p>
+        <div class="opts">
+          <label><input type="radio" name="mq15" value="a"> (a) Both true, R explains A</label>
+          <label><input type="radio" name="mq15" value="b"> (b) Both true, R doesn't explain A</label>
+          <label><input type="radio" name="mq15" value="c"> (c) A true, R false</label>
+          <label><input type="radio" name="mq15" value="d"> (d) A false, R true</label>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin:16px 0">
+        <button class="btn-check" onclick="checkMQ()">✅ Check My Answers</button>
+        <button class="btn-reset" onclick="resetMQ()">🔄 Reset</button>
+      </div>
+      <div class="score-box" id="mq-score">
+        <h2 id="mq-score-text"></h2><p id="mq-score-msg"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== WORD PROBLEMS ===== -->
+<div id="wordprob" class="section">
+  <div class="card">
+    <div class="card-head">🧩 Word Problem Practice Bank</div>
+    <div class="card-body">
+
+      <div class="mcq-q">
+        <span class="tag tag-easy">Age Problem</span>
+        <p>1. A father is 30 years older than his daughter. After 5 years, the father will be 3 times her age. Find their present ages.</p>
+        <textarea rows="3" placeholder="Write your working here..."></textarea>
+        <button class="btn-ans" onclick="toggleAns(this)">Show Solution</button>
+        <div class="ans-box">Let daughter = x. Father = x + 30.<br>After 5 years: x + 35 = 3(x + 5) → x + 35 = 3x + 15 → 2x = 20 → <strong>x = 10</strong><br>✅ Daughter = 10 years, Father = 40 years.</div>
+      </div>
+
+      <div class="mcq-q">
+        <span class="tag tag-med">Age Ratio</span>
+        <p>2. Sham and Sadhu's ages are in ratio 3:4. Six years ago, ratio was 7:10. Find present ages.</p>
+        <textarea rows="3" placeholder="Write your working here..."></textarea>
+        <button class="btn-ans" onclick="toggleAns(this)">Show Solution</button>
+        <div class="ans-box">Let ages = 3x and 4x.<br>(3x−6)/(4x−6) = 7/10 → 30x−60 = 28x−42 → 2x = 18 → x = 9<br>✅ <strong>Sham = 27, Sadhu = 36</strong></div>
+      </div>
+
+      <div class="mcq-q">
+        <span class="tag tag-med">Digit Problem</span>
+        <p>3. Sum of digits of a 2-digit number = 11. The number exceeds its reverse by 45. Find the number.</p>
+        <textarea rows="3" placeholder="Write your working here..."></textarea>
+        <button class="btn-ans" onclick="toggleAns(this)">Show Solution</button>
+        <div class="ans-box">Tens = x, Units = 11−x. Original = 9x+11, Reversed = 110−9x.<br>(9x+11)−(110−9x) = 45 → 18x−99 = 45 → 18x = 144 → x = 8<br>✅ <strong>Number = 83</strong></div>
+      </div>
+
+      <div class="mcq-q">
+        <span class="tag tag-med">Number Problem</span>
+        <p>4. One number is twice another. If 30 is subtracted from both, one becomes 4 times the other. Find the numbers.</p>
+        <textarea rows="3" placeholder="Write your working here..."></textarea>
+        <button class="btn-ans" onclick="toggleAns(this)">Show Solution</button>
+        <div class="ans-box">Let numbers = 2x and x. (2x−30) = 4(x−30) → 2x−30 = 4x−120 → 90 = 2x → x = 45<br>✅ <strong>Numbers = 45 and 90</strong></div>
+      </div>
+
+      <div class="mcq-q">
+        <span class="tag tag-hard">Speed Problem</span>
+        <p>5. A boat covers the distance between two points downstream in 4 hours and upstream in 5 hours. Stream speed = 2 km/hr. Find boat speed.</p>
+        <textarea rows="3" placeholder="Write your working here..."></textarea>
+        <button class="btn-ans" onclick="toggleAns(this)">Show Solution</button>
+        <div class="ans-box">Let boat speed = x km/h. Downstream speed = x+2, Upstream = x−2.<br>Distance same: 4(x+2) = 5(x−2) → 4x+8 = 5x−10 → x = 18<br>✅ <strong>Boat speed = 18 km/h</strong></div>
+      </div>
+
+      <div class="mcq-q">
+        <span class="tag tag-hard">Fraction Problem</span>
+        <p>6. Denominator of a rational number is greater than numerator by 8. If numerator increases by 17 and denominator decreases by 1, number = 3/2. Find original number.</p>
+        <textarea rows="3" placeholder="Write your working here..."></textarea>
+        <button class="btn-ans" onclick="toggleAns(this)">Show Solution</button>
+        <div class="ans-box">Let numerator = x. Denominator = x+8.<br>(x+17)/(x+8−1) = 3/2 → 2(x+17) = 3(x+7) → 2x+34 = 3x+21 → x = 13<br>✅ <strong>Fraction = 13/21</strong></div>
+      </div>
+
+      <div class="mcq-q">
+        <span class="tag tag-easy">Perimeter</span>
+        <p>7. Perimeter of a triangle is 62/3 cm. Two sides are 2½ cm and 3⅓ cm. Find the third side.</p>
+        <textarea rows="3" placeholder="Write your working here..."></textarea>
+        <button class="btn-ans" onclick="toggleAns(this)">Show Solution</button>
+        <div class="ans-box">Third side = 62/3 − 5/2 − 10/3<br>= 62/3 − 10/3 − 5/2 = 52/3 − 5/2 = 104/6 − 15/6 = <strong>89/6 = 14⅚ cm</strong></div>
+      </div>
+
+      <div class="mcq-q">
+        <span class="tag tag-hard">Toffee Distribution</span>
+        <p>8. Ankur gives 1/3 to Ravi, 1/4 to Amit, 1/6 to Sunil, and keeps 15. How many toffees did he start with?</p>
+        <textarea rows="3" placeholder="Write your working here..."></textarea>
+        <button class="btn-ans" onclick="toggleAns(this)">Show Solution</button>
+        <div class="ans-box">Let total = x.<br>Given away: x/3 + x/4 + x/6 = (4x+3x+2x)/12 = 9x/12 = 3x/4<br>Remaining: x − 3x/4 = x/4 = 15 → <strong>x = 60 toffees</strong></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ===== CHECKLIST ===== -->
+<div id="checklist" class="section">
+  <div class="card">
+    <div class="card-head">✅ Before-Exam Revision Checklist</div>
+    <div class="card-body">
+      <ul class="checklist">
+        <li>I can identify whether an equation is linear or not</li>
+        <li>I can transpose terms correctly (sign changes when crossing =)</li>
+        <li>I know how to find LCM and clear fractions in one step</li>
+        <li>I can apply cross-multiplication for fractional equations</li>
+        <li>I can solve age problems using the present-age = x method</li>
+        <li>I can set up a 2-digit number using tens and units</li>
+        <li>I can solve age ratio problems (let ages = px and qx)</li>
+        <li>I can find boat speed using D = S × T both ways</li>
+        <li>I always verify my answer by substituting back in the original</li>
+        <li>I know the difference between an identity (infinite solutions) and no solution</li>
+        <li>I know assertion-reason format: check each statement independently first</li>
+        <li>I define the variable clearly at the start of every word problem</li>
+        <li>I write the equation, solve it, and state the final answer clearly</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">🔑 Quick Answer Key — MCQ Practice</div>
+    <div class="card-body">
+      <p style="font-family:monospace;line-height:2.2;font-size:.93rem">
+        1.(c)  2.(b)  3.(b)  4.(b)  5.(b)  6.(a)  7.(b)  8.(d)  9.(b)  10.(b)<br>
+        11.(b)  12.(b)  13.(c)  14.(a)  15.(a)
+      </p>
+      <div class="tip-box" style="margin-top:12px">💡 For Q10: Let son = x, father = 4x. After 20 years: 4x+20 = 2(x+20) → 4x+20 = 2x+40 → 2x=20 → x=10.</div>
+      <div class="tip-box">💡 For Q13: Let boat speed = x. 4(x+2) = 5(x−2) → x = 18 km/h.</div>
+      <div class="tip-box">💡 For Q14: Tens = x, Units = 8−x. (9x+8)+18 = 9(8−x)+8 → Wait — set up: original+(reversed−original)=18 → 9(8−x)+8 = 9x+8+18 means reversed > original. So units > tens. Units = x, tens = 8−x. (8−x) < x. Original = 10(8−x)+x = 80−9x. Reversed = 10x+(8−x) = 9x+8. Reversed−original=18 → (9x+8)−(80−9x)=18 → 18x−72=18 → 18x=90 → x=5. Number = 35.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+function show(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+function toggleAns(btn){
+  const box=btn.nextElementSibling;
+  box.style.display=box.style.display==='block'?'none':'block';
+  btn.textContent=box.style.display==='block'?'Hide Solution':'Show Solution';
+}
+const mqAns={mq1:'c',mq2:'b',mq3:'b',mq4:'b',mq5:'b',mq6:'a',mq7:'b',mq8:'d',mq9:'b',mq10:'b',mq11:'b',mq12:'b',mq13:'c',mq14:'a',mq15:'a'};
+function checkMQ(){
+  let score=0;
+  for(let q in mqAns){
+    const sel=document.querySelector(`input[name="${q}"]:checked`);
+    const div=document.getElementById(q);
+    div.querySelectorAll('label').forEach(l=>l.classList.remove('correct-fl','wrong-fl'));
+    if(sel){
+      if(sel.value===mqAns[q]){score++;sel.closest('label').classList.add('correct-fl');}
+      else{sel.closest('label').classList.add('wrong-fl');div.querySelector(`input[value="${mqAns[q]}"]`).closest('label').classList.add('correct-fl');}
+    } else {
+      div.querySelector(`input[value="${mqAns[q]}"]`).closest('label').classList.add('correct-fl');
+    }
+  }
+  const box=document.getElementById('mq-score');
+  box.style.display='block';
+  const pct=Math.round(score/15*100);
+  document.getElementById('mq-score-text').textContent=score+'/15 ('+pct+'%)';
+  document.getElementById('mq-score-msg').textContent=pct>=80?'🌟 Excellent! You are exam-ready!':pct>=60?'👍 Good! Revise the tricky ones.':'📚 Keep practising — review your formula sheet!';
+}
+function resetMQ(){
+  document.querySelectorAll('input[type=radio]').forEach(r=>r.checked=false);
+  document.querySelectorAll('label').forEach(l=>l.classList.remove('correct-fl','wrong-fl'));
+  document.getElementById('mq-score').style.display='none';
+}
+</script>
+</body>
+</html>

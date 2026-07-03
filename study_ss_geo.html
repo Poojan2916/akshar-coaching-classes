@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geography Study Guide | Class VIII</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',sans-serif;background:#e8f5e9;color:#222}
+.cover{background:linear-gradient(135deg,#1b5e20,#2e7d32,#558b2f);color:#fff;padding:36px 40px;text-align:center}
+.cover h1{font-size:2rem}.cover h2{font-size:1rem;opacity:.85;margin-top:6px}
+.badges{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:16px}
+.badge{background:rgba(255,255,255,.15);padding:6px 14px;border-radius:20px;font-size:.82rem}
+.ch-nav{display:flex;flex-wrap:wrap;gap:6px;padding:12px 16px;background:#fff;border-bottom:2px solid #c8e6c9;position:sticky;top:0;z-index:100;box-shadow:0 2px 6px rgba(0,0,0,.07)}
+.ch-nav button{padding:8px 16px;border:2px solid #388e3c;border-radius:20px;background:#fff;color:#388e3c;font-weight:700;cursor:pointer;font-size:.85rem;transition:.2s}
+.ch-nav button.active,.ch-nav button:hover{background:#388e3c;color:#fff}
+.chapter{display:none;max-width:940px;margin:0 auto;padding:24px 20px 48px}
+.chapter.active{display:block}
+.card{background:#fff;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,.08);margin:18px 0;overflow:hidden}
+.card-head{background:#2e7d32;color:#fff;padding:12px 20px;font-size:1rem;font-weight:700}
+.card-head2{background:#1b5e20}
+.card-body{padding:18px 20px}
+.key-box{background:#e8f5e9;border-left:5px solid #43a047;border-radius:6px;padding:12px 16px;margin:10px 0;font-size:.92rem;line-height:1.8}
+.tip-box{background:#f9fbe7;border-left:5px solid #558b2f;border-radius:6px;padding:11px 15px;margin:10px 0;font-size:.9rem;line-height:1.7}
+.warn-box{background:#fff3e0;border-left:5px solid #f57c00;border-radius:6px;padding:11px 15px;margin:10px 0;font-size:.9rem;line-height:1.7}
+.trick-box{background:#fce4ec;border-left:5px solid #c2185b;border-radius:6px;padding:11px 15px;margin:10px 0;font-size:.9rem;line-height:1.7}
+.fact-box{background:#e3f2fd;border-left:5px solid #1976d2;border-radius:6px;padding:11px 15px;margin:10px 0;font-size:.9rem;line-height:1.7}
+table{width:100%;border-collapse:collapse;margin:10px 0}
+th{background:#2e7d32;color:#fff;padding:9px 12px;text-align:left;font-size:.87rem}
+td{padding:8px 12px;border-bottom:1px solid #e0e0e0;font-size:.9rem}
+tr:nth-child(even) td{background:#f1f8e9}
+.mcq-q{background:#fafafa;border-radius:8px;padding:13px;margin:12px 0;border-left:4px solid #43a047}
+.mcq-q p{font-weight:600;margin-bottom:10px;line-height:1.5}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.opts label{padding:8px 11px;border:1.5px solid #ccc;border-radius:6px;cursor:pointer;font-size:.89rem;display:flex;align-items:center;gap:7px;transition:.2s}
+.opts label:hover{border-color:#43a047;background:#e8f5e9}
+input[type=radio]{accent-color:#2e7d32}
+.ans-box{background:#e8f5e9;border:1.5px solid #a5d6a7;border-radius:6px;padding:10px 14px;margin-top:8px;display:none;font-size:.9rem;line-height:1.7}
+.btn-ans{background:#388e3c;color:#fff;border:none;padding:7px 14px;border-radius:6px;cursor:pointer;font-size:.83rem;margin-top:8px}
+textarea{width:100%;border:1.5px solid #bbb;border-radius:6px;padding:10px;font-family:inherit;font-size:.92rem;margin-top:6px;resize:vertical}
+textarea:focus{outline:none;border-color:#2e7d32}
+.btn-check{background:#1b5e20;color:#fff;border:none;padding:11px 26px;border-radius:8px;cursor:pointer;font-size:.95rem;font-weight:700;margin:12px 4px}
+.btn-reset{background:#e53935;color:#fff;border:none;padding:11px 26px;border-radius:8px;cursor:pointer;font-size:.95rem;font-weight:700}
+.score-box{display:none;background:linear-gradient(135deg,#1b5e20,#2e7d32);color:#fff;border-radius:10px;padding:20px;text-align:center;margin:14px 0}
+.correct-fl{background:#e8f5e9!important;border-color:#43a047!important}
+.wrong-fl{background:#ffebee!important;border-color:#e53935!important}
+.res-card{border-radius:8px;padding:13px 16px;margin:8px 0;border:1.5px solid #a5d6a7}
+.res-type{font-weight:700;font-size:.95rem;color:#1b5e20}
+.res-desc{font-size:.88rem;margin-top:4px;line-height:1.6}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:600px){.opts,.grid2{grid-template-columns:1fr}}
+
+  /* ── ACC NAV BAR ── */
+  .acc-topbar{display:flex;align-items:center;justify-content:space-between;background:linear-gradient(135deg,#0d1b4b,#1a2e7a);padding:10px 24px;position:sticky;top:0;z-index:999;box-shadow:0 2px 12px rgba(0,0,0,.3)}
+  .acc-topbar-left{display:flex;align-items:center;gap:12px}
+  .acc-topbar img{width:42px;height:42px;border-radius:50%;border:2px solid rgba(255,255,255,.3)}
+  .acc-topbar-name{color:#fff;font-weight:800;font-size:.92rem;line-height:1.1}
+  .acc-topbar-name span{display:block;font-size:.7rem;color:rgba(255,255,255,.6);font-weight:400}
+  .acc-home-btn{background:rgba(255,255,255,.15);color:#fff;border:1.5px solid rgba(255,255,255,.3);padding:7px 16px;border-radius:20px;font-size:.8rem;font-weight:700;text-decoration:none;transition:.2s;white-space:nowrap}
+  .acc-home-btn:hover{background:rgba(255,255,255,.25);color:#fbbf24}
+
+</style>
+</head>
+<body>
+<div class="cover">
+  <div style="font-size:.8rem;opacity:.7;margin-bottom:6px">AKSHAR COACHING CLASSES · CLASS VIII</div>
+  <h1>🌍 Geography Study Guide</h1>
+  <h2>Ch-1: Natural Resources — Land, Water, Forest, Wildlife, Minerals, Soils</h2>
+  <div class="badges">
+    <span class="badge">🗺️ Resource Types</span><span class="badge">🌱 Conservation</span>
+    <span class="badge">💡 Exam Tips</span><span class="badge">📝 MCQ Practice</span>
+    <span class="badge">📋 Q&amp;A Bank</span>
+  </div>
+</div>
+
+<div class="ch-nav">
+  <button class="active" onclick="showCh('nr',this)">🌿 Natural Resources</button>
+  <button onclick="showCh('land',this)">🏔️ Land &amp; Soil</button>
+  <button onclick="showCh('water',this)">💧 Water Resources</button>
+  <button onclick="showCh('mcq',this)">📝 MCQ Practice</button>
+</div>
+
+<!-- ===== NATURAL RESOURCES ===== -->
+<div id="nr" class="chapter active">
+
+  <div class="card">
+    <div class="card-head">🌿 What are Natural Resources?</div>
+    <div class="card-body">
+      <div class="key-box">
+        🔑 <strong>Natural Resources</strong> = gifts of nature used by humans. Include land, water, forests, wildlife, minerals, soil, air.<br>
+        Resources are <strong>classified</strong> in multiple ways based on: exhaustibility, origin, ownership, and development status.
+      </div>
+      <table>
+        <tr><th colspan="2">Classification A: Exhaustibility</th></tr>
+        <tr><td><strong>Renewable Resources</strong></td><td>Can be replenished naturally. Examples: Water (in water cycle), Forests (regrow), Solar energy, Wind energy, Tidal energy.</td></tr>
+        <tr><td><strong>Non-renewable Resources</strong></td><td>Finite, take millions of years to form. Examples: Coal, Petroleum, Natural gas, Minerals like iron ore, bauxite.</td></tr>
+        <tr><th colspan="2">Classification B: Origin</th></tr>
+        <tr><td><strong>Biotic</strong></td><td>Living sources: Forests, animals, fisheries, crops</td></tr>
+        <tr><td><strong>Abiotic</strong></td><td>Non-living sources: Land, water, air, minerals, metals</td></tr>
+        <tr><th colspan="2">Classification C: Development Status</th></tr>
+        <tr><td><strong>Potential Resources</strong></td><td>Exist but not yet exploited (e.g., uranium in Rajasthan)</td></tr>
+        <tr><td><strong>Actual Resources</strong></td><td>Already surveyed and being used (e.g., coal mined in West Bengal)</td></tr>
+        <tr><td><strong>Reserve Resources</strong></td><td>Actual resources kept for future use</td></tr>
+        <tr><td><strong>Stock Resources</strong></td><td>Resources whose full potential is not yet determined</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">🌳 Forest &amp; Wildlife Resources</div>
+    <div class="card-body">
+      <table>
+        <tr><th>Concept</th><th>Details</th></tr>
+        <tr><td>Deforestation causes</td><td>Agriculture expansion, urbanization, logging, fuel wood collection, mining activities</td></tr>
+        <tr><td>Effects of deforestation</td><td>Soil erosion, floods, drought, loss of biodiversity, climate change, displacement of tribal communities</td></tr>
+        <tr><td>Chipko Movement</td><td>1973, Uttarakhand; villagers (especially women led by Gaura Devi) hugged trees to prevent logging. Means "to cling."</td></tr>
+        <tr><td>Project Tiger</td><td>1973 — to protect tiger populations. Created tiger reserves across India.</td></tr>
+        <tr><td>Wildlife Protection Act</td><td>1972 — comprehensive law protecting wild animals and plants. Creates protected areas.</td></tr>
+        <tr><td>Biosphere Reserve</td><td>Large protected areas with core zone (no human activity) + buffer zone + transition zone.</td></tr>
+        <tr><td>National Park</td><td>Highest protection — no human activity allowed. Examples: Kaziranga, Jim Corbett, Gir.</td></tr>
+        <tr><td>Wildlife Sanctuary</td><td>Protection of specific species — some human activity allowed.</td></tr>
+        <tr><td>Social Forestry</td><td>Community-based planting — people grow trees for their own use</td></tr>
+        <tr><td>Agroforestry</td><td>Trees + crops grown together — improves soil, microclimate, and income</td></tr>
+      </table>
+      <div class="trick-box">🎯 Chipko year = 1973, NOT 1972. Wildlife Protection Act = 1972. Project Tiger = 1973. Don't confuse them!</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">⛏️ Mineral Resources</div>
+    <div class="card-body">
+      <div class="grid2">
+        <div>
+          <table>
+            <tr><th colspan="2">Minerals Classification</th></tr>
+            <tr><td><strong>Metallic Minerals</strong></td><td>Iron ore, Bauxite (aluminium), Copper, Gold, Manganese, Zinc</td></tr>
+            <tr><td><strong>Non-Metallic Minerals</strong></td><td>Coal, Petroleum, Limestone, Mica, Rock salt, Gypsum</td></tr>
+            <tr><td><strong>Ferrous Minerals</strong></td><td>Contain iron — Iron ore, Manganese, Chromite, Nickel</td></tr>
+            <tr><td><strong>Non-Ferrous Minerals</strong></td><td>No iron — Copper, Bauxite, Gold, Lead, Zinc</td></tr>
+          </table>
+        </div>
+        <div>
+          <div class="res-card">
+            <div class="res-type">⚙️ Iron Ore</div>
+            <div class="res-desc">Magnetite (best quality, 72% iron), Hematite (most used, 50-60% iron). Found in: Odisha, Jharkhand, Chhattisgarh.</div>
+          </div>
+          <div class="res-card">
+            <div class="res-type">🪵 Coal</div>
+            <div class="res-desc">Anthracite (best quality) → Bituminous → Lignite → Peat. India = 4th largest coal reserve.</div>
+          </div>
+          <div class="res-card">
+            <div class="res-type">🛢️ Petroleum</div>
+            <div class="res-desc">"Black gold". Refined to get petrol, diesel, kerosene, LPG. Found offshore in Mumbai High.</div>
+          </div>
+        </div>
+      </div>
+      <div class="warn-box">⚠️ Over-exploitation of minerals = Non-renewable. Once gone, cannot be replaced. Conservation is essential.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">🌍 Conservation — Key Movements &amp; Laws</div>
+    <div class="card-body">
+      <table>
+        <tr><th>Movement / Law</th><th>Year</th><th>Key Points</th></tr>
+        <tr><td>Chipko Movement</td><td>1973</td><td>Uttarakhand; Gaura Devi led women; hugging trees to stop logging. "Chipko" = to hug</td></tr>
+        <tr><td>Project Tiger</td><td>1973</td><td>Launched by Indira Gandhi; 50+ tiger reserves; tiger = India's national animal</td></tr>
+        <tr><td>Wildlife Protection Act</td><td>1972</td><td>Comprehensive wildlife law; National Parks, Sanctuaries; Schedule I = highest protection</td></tr>
+        <tr><td>Forest Rights Act</td><td>2006</td><td>Recognizes tribal communities' rights to forest land; prevents eviction</td></tr>
+        <tr><td>National Policy on Environment</td><td>2006</td><td>Sustainable development and conservation framework</td></tr>
+        <tr><td>Article 21 (Constitution)</td><td>—</td><td>"Right to Life" — interpreted to include right to healthy environment</td></tr>
+        <tr><td>3 R's of Conservation</td><td>—</td><td>Reduce, Reuse, Recycle — applicable to all resources</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">💡 Exam Tips — Natural Resources</div>
+    <div class="card-body">
+      <div class="trick-box">🎯 Chipko = 1973, Wildlife Act = 1972, Project Tiger = 1973. These 3 dates are commonly tested together.</div>
+      <div class="trick-box">🎯 Petroleum = "Black gold" (because it's as valuable as gold and is black-brown crude oil). Natural gas = "blue fuel". LPG = Liquefied Petroleum Gas.</div>
+      <div class="trick-box">🎯 Magnetite = highest quality iron ore (72% pure iron). Hematite = most widely used. Remember: "Magnet = Most pure."</div>
+      <div class="tip-box">📌 Renewable ≠ unlimited. Water, forests, and fish stocks CAN be depleted if overused beyond their natural replenishment rate.</div>
+      <div class="tip-box">📌 India's major minerals by region: Coal (Jharkhand, Odisha) | Petroleum (Mumbai High, Gujarat) | Copper (Rajasthan) | Bauxite (Odisha, Jharkhand) | Iron ore (Jharkhand, Odisha, Karnataka).</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== LAND & SOIL ===== -->
+<div id="land" class="chapter">
+  <div class="card">
+    <div class="card-head card-head2">🏔️ Land Resources</div>
+    <div class="card-body">
+      <div class="key-box">
+        🔑 <strong>Land</strong> is the most important natural resource — supports life, agriculture, industry, habitation.<br>
+        India's land use is classified into: Forest land, Non-agricultural land, Agricultural land, Cultivable wasteland, Current fallows, Other fallows, Net sown area.
+      </div>
+      <table>
+        <tr><th>Land Use Category</th><th>Meaning</th></tr>
+        <tr><td>Net Sown Area</td><td>Land actually cultivated (one crop per year)</td></tr>
+        <tr><td>Gross Cropped Area</td><td>Net sown area + area sown more than once (double/triple cropped)</td></tr>
+        <tr><td>Current Fallow</td><td>Land left uncultivated for one year for soil fertility restoration</td></tr>
+        <tr><td>Cultivable Wasteland</td><td>Land that could be cultivated but isn't — due to neglect or poor conditions</td></tr>
+        <tr><td>Wasteland</td><td>Barren, rocky, desert land — uncultivable</td></tr>
+        <tr><td>Land Degradation</td><td>Deterioration of land quality due to erosion, waterlogging, salinity, or overgrazing</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head card-head2">🌱 Types of Soil in India</div>
+    <div class="card-body">
+      <table>
+        <tr><th>Soil Type</th><th>Also known as</th><th>Key Features</th><th>Crops grown</th></tr>
+        <tr><td>Alluvial Soil</td><td>Riverine soil</td><td>Most fertile; found in river plains (Indo-Gangetic Plain); rich in potash; deficient in nitrogen</td><td>Wheat, rice, sugarcane, pulses</td></tr>
+        <tr><td>Black Soil</td><td>Regur / Cotton soil</td><td>Rich in iron, calcium, magnesium; retains moisture well; forms deep cracks in dry weather</td><td>Cotton (best), jowar, gram</td></tr>
+        <tr><td>Red &amp; Yellow Soil</td><td>Laterite at depth</td><td>Red color due to iron oxide; found in Deccan Plateau and Eastern Ghats; not very fertile</td><td>Groundnut, millets, tobacco</td></tr>
+        <tr><td>Laterite Soil</td><td>—</td><td>Formed by heavy leaching of nutrients in high-rainfall areas; poor in nitrogen, phosphorus</td><td>Cashew, tea, coffee</td></tr>
+        <tr><td>Arid/Desert Soil</td><td>Sandy soil</td><td>Found in Rajasthan; dry, sandy, low humus; soluble salts present; needs irrigation</td><td>Bajra, guar, barley</td></tr>
+        <tr><td>Forest/Mountain Soil</td><td>—</td><td>Found in Himalayas and hills; rich in humus; acidic; coarse texture</td><td>Tea, coffee, fruits</td></tr>
+      </table>
+      <div class="trick-box">🎯 Black soil = Cotton soil = Regur. Black soil retains moisture = can be farmed for months without rain. Best crop = Cotton. Remember: Black Cotton Belt = Maharashtra + Gujarat.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head card-head2">Soil Erosion &amp; Conservation</div>
+    <div class="card-body">
+      <table>
+        <tr><th>Type of Erosion</th><th>Cause</th><th>Solution</th></tr>
+        <tr><td>Sheet Erosion</td><td>Rainwater flows uniformly over the field removing topsoil</td><td>Cover crops, mulching</td></tr>
+        <tr><td>Rill Erosion</td><td>Small rills/channels form due to rainfall runoff</td><td>Check dams, contour ploughing</td></tr>
+        <tr><td>Gully Erosion</td><td>Deep gullies cut into land (creates "ravines"). Common in UP, MP, Bihar.</td><td>Plugging gullies, afforestation</td></tr>
+        <tr><td>Wind Erosion</td><td>Wind blows away dry, loose topsoil. Common in Rajasthan.</td><td>Shelter belts (trees planted in rows)</td></tr>
+      </table>
+      <div class="tip-box">📌 Gully erosion creates "Bad Land" or "Ravines" — unfit for cultivation. Parts of Chambal basin in MP and UP suffer from this.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head card-head2">🌿 Soil Conservation Techniques</div>
+    <div class="card-body">
+      <table>
+        <tr><th>Technique</th><th>How it works</th></tr>
+        <tr><td>Contour Ploughing</td><td>Ploughing along contour lines (not up-down slopes) reduces water runoff and erosion</td></tr>
+        <tr><td>Terrace Farming</td><td>Cutting steps into hillsides to slow water flow and prevent erosion</td></tr>
+        <tr><td>Strip Cropping</td><td>Alternating strips of crops and grasses — grass slows water flow</td></tr>
+        <tr><td>Shelter Belts</td><td>Rows of trees planted to block wind erosion (common in Rajasthan)</td></tr>
+        <tr><td>Check Dams</td><td>Small dams to slow runoff and trap eroded soil</td></tr>
+        <tr><td>Crop Rotation</td><td>Alternating crops to maintain soil nutrient balance</td></tr>
+        <tr><td>Mixed Farming</td><td>Crops + animals together — reduces dependence on soil nutrients</td></tr>
+        <tr><td>Mulching</td><td>Covering soil with organic matter to prevent evaporation and erosion</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ===== WATER ===== -->
+<div id="water" class="chapter">
+  <div class="card">
+    <div class="card-head">💧 Water Resources</div>
+    <div class="card-body">
+      <div class="key-box">
+        🔑 Water = renewable resource (through water cycle) but freshwater is only <strong>2.5%</strong> of total water, of which only <strong>1%</strong> is accessible for human use.
+      </div>
+      <table>
+        <tr><th>Concept</th><th>Details</th></tr>
+        <tr><td>Water Cycle</td><td>Evaporation → Condensation → Precipitation → Collection → Evaporation again</td></tr>
+        <tr><td>Sources of freshwater</td><td>Rivers (glaciers), Groundwater, Lakes, Rainfall</td></tr>
+        <tr><td>Water scarcity</td><td>When demand exceeds supply. India = water-stressed country in some regions.</td></tr>
+        <tr><td>Irrigation methods</td><td>Canal irrigation (Punjab, Haryana), Drip irrigation (Karnataka), Sprinkler, Tanks (South India)</td></tr>
+        <tr><td>Rainwater Harvesting</td><td>Collecting rainwater for storage and reuse. Rooftop RWH, Kund, Johad, Check dams.</td></tr>
+        <tr><td>Groundwater depletion</td><td>Over-extraction of groundwater through deep bore wells faster than recharge rate</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">💧 Traditional Water Conservation</div>
+    <div class="card-body">
+      <table>
+        <tr><th>Traditional System</th><th>Region</th><th>Description</th></tr>
+        <tr><td>Johad</td><td>Rajasthan</td><td>Small earthen water storage tank; rainwater harvesting</td></tr>
+        <tr><td>Kund</td><td>Rajasthan</td><td>Underground circular tank for rainwater collection</td></tr>
+        <tr><td>Baoli/Bawdi (Stepwell)</td><td>North/West India</td><td>Stepped structure leading down to water — community water source</td></tr>
+        <tr><td>Bamboo Drip</td><td>Meghalaya (NE India)</td><td>Bamboo pipes carry water from streams to farms</td></tr>
+        <tr><td>Zabo</td><td>Nagaland</td><td>Rainwater stored in hillside ponds, then used for irrigation</td></tr>
+        <tr><td>Eri</td><td>Tamil Nadu</td><td>Seasonal lake — shared community tank irrigation</td></tr>
+        <tr><td>Surangam</td><td>Kerala/Karnataka</td><td>Horizontal tunnel that channels groundwater</td></tr>
+      </table>
+      <div class="trick-box">🎯 For exams: "Name any 2 traditional water conservation methods in India." Pick Johad (Rajasthan) + Bamboo Drip (Meghalaya) — they contrast well geographically!</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">💡 Exam Tips — Geography</div>
+    <div class="card-body">
+      <div class="trick-box">🎯 Soil MCQs: Black soil = Cotton = Regur = retains moisture. Alluvial = most fertile = North India plains. Laterite = leached = poor = Western Ghats + NE India.</div>
+      <div class="trick-box">🎯 "Only 2.5% of water is freshwater, and only 1% is accessible" — this statistic appears in many forms in exams. Memorize it.</div>
+      <div class="trick-box">🎯 Iron ore: Magnetite = 72% iron. Hematite = 50-60% iron. India = 4th largest coal reserve. India has 22-25% of world's iron ore reserves.</div>
+      <div class="tip-box">📌 Know Article 21 = "Right to Life" — courts have extended this to include the right to a clean environment. PIL cases on pollution are filed under Article 21.</div>
+      <div class="tip-box">📌 Difference between National Park and Sanctuary: NP = stricter (no human activity). Sanctuary = specific animal protection (limited human activity allowed).</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MCQ ===== -->
+<div id="mcq" class="chapter">
+  <div class="card">
+    <div class="card-head">📝 MCQ Practice — Natural Resources (15 Questions)</div>
+    <div class="card-body">
+      <div class="mcq-q" id="g1"><p>1. Which of the following is a non-renewable resource?</p>
+        <div class="opts">
+          <label><input type="radio" name="g1" value="a">(a) Solar energy</label>
+          <label><input type="radio" name="g1" value="b">(b) Wind energy</label>
+          <label><input type="radio" name="g1" value="c">(c) Coal</label>
+          <label><input type="radio" name="g1" value="d">(d) Water</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="g2"><p>2. The Chipko Movement was associated with:</p>
+        <div class="opts">
+          <label><input type="radio" name="g2" value="a">(a) Water conservation</label>
+          <label><input type="radio" name="g2" value="b">(b) Protection of forests</label>
+          <label><input type="radio" name="g2" value="c">(c) Soil conservation</label>
+          <label><input type="radio" name="g2" value="d">(d) Wildlife protection</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="g3"><p>3. Black soil is best suited for growing:</p>
+        <div class="opts">
+          <label><input type="radio" name="g3" value="a">(a) Rice</label>
+          <label><input type="radio" name="g3" value="b">(b) Tea</label>
+          <label><input type="radio" name="g3" value="c">(c) Cotton</label>
+          <label><input type="radio" name="g3" value="d">(d) Jute</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="g4"><p>4. Highest quality iron ore is:</p>
+        <div class="opts">
+          <label><input type="radio" name="g4" value="a">(a) Hematite</label>
+          <label><input type="radio" name="g4" value="b">(b) Limonite</label>
+          <label><input type="radio" name="g4" value="c">(c) Magnetite</label>
+          <label><input type="radio" name="g4" value="d">(d) Siderite</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="g5"><p>5. Alluvial soil is most fertile because it is:</p>
+        <div class="opts">
+          <label><input type="radio" name="g5" value="a">(a) Rich in humus from forests</label>
+          <label><input type="radio" name="g5" value="b">(b) Deposited by rivers carrying mineral-rich sediment</label>
+          <label><input type="radio" name="g5" value="c">(c) Sandy and easy to plough</label>
+          <label><input type="radio" name="g5" value="d">(d) Found near coal mines</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="g6"><p>6. The Wildlife Protection Act was passed in:</p>
+        <div class="opts">
+          <label><input type="radio" name="g6" value="a">(a) 1969</label>
+          <label><input type="radio" name="g6" value="b">(b) 1972</label>
+          <label><input type="radio" name="g6" value="c">(c) 1973</label>
+          <label><input type="radio" name="g6" value="d">(d) 1980</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="g7"><p>7. Johad is a traditional water conservation system of:</p>
+        <div class="opts">
+          <label><input type="radio" name="g7" value="a">(a) Kerala</label>
+          <label><input type="radio" name="g7" value="b">(b) Nagaland</label>
+          <label><input type="radio" name="g7" value="c">(c) Rajasthan</label>
+          <label><input type="radio" name="g7" value="d">(d) Tamil Nadu</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="g8"><p>8. Gully erosion creates an uneven, uncultivable land called:</p>
+        <div class="opts">
+          <label><input type="radio" name="g8" value="a">(a) Flood plains</label>
+          <label><input type="radio" name="g8" value="b">(b) Bad lands or Ravines</label>
+          <label><input type="radio" name="g8" value="c">(c) Terraced land</label>
+          <label><input type="radio" name="g8" value="d">(d) Alluvial fans</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="g9"><p>9. Which percentage of Earth's total water is freshwater?</p>
+        <div class="opts">
+          <label><input type="radio" name="g9" value="a">(a) 70%</label>
+          <label><input type="radio" name="g9" value="b">(b) 10%</label>
+          <label><input type="radio" name="g9" value="c">(c) 2.5%</label>
+          <label><input type="radio" name="g9" value="d">(d) 5%</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="g10"><p>10. Ploughing along the contour lines of slopes is called:</p>
+        <div class="opts">
+          <label><input type="radio" name="g10" value="a">(a) Terrace farming</label>
+          <label><input type="radio" name="g10" value="b">(b) Strip cropping</label>
+          <label><input type="radio" name="g10" value="c">(c) Contour ploughing</label>
+          <label><input type="radio" name="g10" value="d">(d) Crop rotation</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="g11"><p>11. "Regur" is another name for:</p>
+        <div class="opts">
+          <label><input type="radio" name="g11" value="a">(a) Alluvial soil</label>
+          <label><input type="radio" name="g11" value="b">(b) Laterite soil</label>
+          <label><input type="radio" name="g11" value="c">(c) Black soil</label>
+          <label><input type="radio" name="g11" value="d">(d) Red soil</label>
+        </div>
+      </div>
+      <div class="mcq-q" id="g12"><p>12. Petroleum is also called:</p>
+        <div class="opts">
+          <label><input type="radio" name="g12" value="a">(a) Black diamond</label>
+          <label><input type="radio" name="g12" value="b">(b) Black gold</label>
+          <label><input type="radio" name="g12" value="c">(c) White oil</label>
+          <label><input type="radio" name="g12" value="d">(d) Liquid coal</label>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:16px">
+        <button class="btn-check" onclick="checkG()">✅ Check Answers</button>
+        <button class="btn-reset" onclick="resetG()">🔄 Reset</button>
+      </div>
+      <div class="score-box" id="g-score"><h2 id="g-score-text"></h2><p id="g-score-msg"></p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">📋 Written Practice — Short Answers</div>
+    <div class="card-body">
+      <div class="mcq-q">
+        <p>1. Distinguish between renewable and non-renewable resources with two examples each.</p>
+        <textarea rows="4"></textarea>
+        <button class="btn-ans" onclick="toggleAns(this)">Show Answer</button>
+        <div class="ans-box"><strong>Renewable resources</strong> can be replenished naturally within a short time period. Examples: Solar energy, Wind energy, Forests (when managed properly).<br><br><strong>Non-renewable resources</strong> are finite and take millions of years to form. Once used, they cannot be replaced within a human time scale. Examples: Coal (takes millions of years), Petroleum (cannot be replenished), Iron ore (limited deposits).</div>
+      </div>
+      <div class="mcq-q">
+        <p>2. What is the Chipko Movement? What was its significance?</p>
+        <textarea rows="4"></textarea>
+        <button class="btn-ans" onclick="toggleAns(this)">Show Answer</button>
+        <div class="ans-box">The Chipko Movement began in 1973 in the Uttarakhand hills. Women, led by Gaura Devi, hugged trees to physically prevent logging contractors from cutting forests. "Chipko" means to cling/hug.<br><br>Significance: (i) It saved forests from commercial felling. (ii) It highlighted the link between forests and community survival — especially for women who depend on forests for fuel, fodder, and water. (iii) It inspired similar movements across India. (iv) It became a model of non-violent environmental activism worldwide.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function showCh(id,btn){
+  document.querySelectorAll('.chapter').forEach(c=>c.classList.remove('active'));
+  document.querySelectorAll('.ch-nav button').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+function toggleAns(btn){
+  const b=btn.nextElementSibling;
+  b.style.display=b.style.display==='block'?'none':'block';
+  btn.textContent=b.style.display==='block'?'Hide Answer':'Show Answer';
+}
+const gAns={g1:'c',g2:'b',g3:'c',g4:'c',g5:'b',g6:'b',g7:'c',g8:'b',g9:'c',g10:'c',g11:'c',g12:'b'};
+function checkG(){
+  const ids=['g1','g2','g3','g4','g5','g6','g7','g8','g9','g10','g11','g12'];
+  let score=0;
+  ids.forEach(q=>{
+    const sel=document.querySelector(`input[name="${q}"]:checked`);
+    const div=document.getElementById(q);
+    div.querySelectorAll('label').forEach(l=>l.classList.remove('correct-fl','wrong-fl'));
+    const cor=gAns[q];
+    if(sel){
+      if(sel.value===cor){score++;sel.closest('label').classList.add('correct-fl');}
+      else{sel.closest('label').classList.add('wrong-fl');div.querySelector(`input[value="${cor}"]`).closest('label').classList.add('correct-fl');}
+    } else {div.querySelector(`input[value="${cor}"]`).closest('label').classList.add('correct-fl');}
+  });
+  document.getElementById('g-score').style.display='block';
+  const pct=Math.round(score/ids.length*100);
+  document.getElementById('g-score-text').textContent=score+'/'+ids.length+' ('+pct+'%)';
+  document.getElementById('g-score-msg').textContent=pct>=80?'🌟 Excellent! Geography Pro!':pct>=60?'👍 Good work!':'📚 Review the notes!';
+}
+function resetG(){
+  ['g1','g2','g3','g4','g5','g6','g7','g8','g9','g10','g11','g12'].forEach(q=>document.querySelectorAll(`input[name="${q}"]`).forEach(r=>r.checked=false));
+  document.querySelectorAll('label').forEach(l=>l.classList.remove('correct-fl','wrong-fl'));
+  document.getElementById('g-score').style.display='none';
+}
+</script>
+</body>
+</html>
